@@ -14,6 +14,10 @@ The Youtube videos where created to give a step-by-step guideline related to the
 1. [Parish Groups Editor](YOUTUBE)
 1. [Parish Information Editor](YOUTUBE)
 1. [Pray Editor](YOUTUBE)
+1. [Plugins](YOUTUBE)
+1. [Changing App Colors](YOUTUBE)
+1. [ONLINE PLUGIN - Digital Guide](YOUTUBE)
+1. [ONLINE PLUGIN - Music Script](YOUTUBE)
 
 ## Software List ##
 
@@ -56,6 +60,10 @@ Os vídeos no Youtube foram criados para servir como guias passo a passo relacio
 1. [Editor de Grupos da Paróquia](YOUTUBE)
 1. [Editor de Informações da Paróquia](YOUTUBE)
 1. [Editor de Pedidos de Oração](YOUTUBE)
+1. [Plugins](YOUTUBE)
+1. [Trocando as Cores do Aplicativo](YOUTUBE)
+1. [PLUGIN ONLINE - Guia Digital](YOUTUBE)
+1. [PLUGIN ONLINE - Repertórios](YOUTUBE)
 
 ## Lista de Softwares ##
 
