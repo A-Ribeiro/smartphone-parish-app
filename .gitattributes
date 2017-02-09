@@ -8,9 +8,13 @@
 *.txt text
 *.bat text
 *.cs text
+*.sln text
+*.config text
+*.csproj text
 
 # Ensure those won't be messed up with
 *.jpg binary
 *.png binary
 *.exe binary
+*.dll binary
 *.data binary
