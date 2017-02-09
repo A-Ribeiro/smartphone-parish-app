@@ -8,6 +8,5 @@ Take a look at the LICENSE file.
 
 Complementary licenses (3rdParty)
 
-Apache License
- V2.0 for the GoogleAPI
+Apache License V2.0 for the GoogleAPI
 LGPL for the PDF file generator
