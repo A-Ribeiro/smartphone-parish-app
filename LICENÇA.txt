@@ -1,0 +1,14 @@
+ Copyright (C) 2017 Alessandro Ribeiro.
+
+O conteúdo em software e arquivos processados está sob a licença livre.
+
+É garantido ao receptor de uma obra protegida por direito autoral, as liberdades de utilizar e gozar dos benefícios de seu uso, copiar e distribuir, estudar e modificar, e distribuir modificações daquela obra.
+
+Ver licença no arquivo LICENSE.
+
+
+Licenças complementares (3rdParty)
+
+Apache License
+ V2.0 para GoogleAPI
+LGPL para Gerador de arquivos PDF

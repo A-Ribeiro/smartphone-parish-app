@@ -1,0 +1,13 @@
+ Copyright (C) 2017 Alessandro Ribeiro.
+
+All content (software and files) are under a FREE license.
+
+It is granted to everyone to use, copy, study, modify and distribute according the GPL v3.
+
+Take a look at the LICENSE file.
+
+Complementary licenses (3rdParty)
+
+Apache License
+ V2.0 for the GoogleAPI
+LGPL for the PDF file generator
