@@ -6,7 +6,7 @@ This Package has algorithms and libraries needed to create and publish online sm
 
 ## Youtube Video Tutorials (Portuguese) ##
 
-The Youtube videos where created to give a step-by-step guideline related to the several features these tools has.
+The Youtube videos where created to give a step-by-step guideline related to the several features these tools have.
 
 1. [Smartphone Application (focused to parish)](YOUTUBE)
 1. [Builtin Package Configuration and Application Publishing](YOUTUBE)
