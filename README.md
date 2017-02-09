@@ -10,6 +10,10 @@ The Youtube videos where created to give a step-by-step guideline related to the
 
 1. [Smartphone Application (focused to parish)](YOUTUBE)
 1. [Builtin Package Configuration and Application Publishing](YOUTUBE)
+1. [News Editor](YOUTUBE)
+1. [Parish Groups Editor](YOUTUBE)
+1. [Parish Information Editor](YOUTUBE)
+1. [Pray Editor](YOUTUBE)
 
 ## Software List ##
 
@@ -48,6 +52,10 @@ Os vídeos no Youtube foram criados para servir como guias passo a passo relacio
 
 1. [Aplicativo para Smartphone (voltado para paróquias)](YOUTUBE)
 1. [Configurar Pacote Embutido e Publicar Aplicativo](YOUTUBE)
+1. [Editor de Notícias](YOUTUBE)
+1. [Editor de Grupos da Paróquia](YOUTUBE)
+1. [Editor de Informações da Paróquia](YOUTUBE)
+1. [Editor de Pedidos de Oração](YOUTUBE)
 
 ## Lista de Softwares ##
 
