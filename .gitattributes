@@ -13,6 +13,10 @@
 *.csproj text
 *.js text
 *.css text
+*.php text
+*.html text
+*.json text
+*.url text
 
 # Ensure those won't be messed up with
 *.jpg binary
@@ -21,3 +25,4 @@
 *.dll binary
 *.data binary
 *.gif binary
+*.zip binary
