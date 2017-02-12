@@ -17,6 +17,8 @@
 *.html text
 *.json text
 *.url text
+*.xml text
+*.java text
 
 # Ensure those won't be messed up with
 *.jpg binary
@@ -27,3 +29,5 @@
 *.gif binary
 *.zip binary
 *.woff2 binary
+*.apk binary
+*.jar binary
