@@ -1,0 +1,23 @@
+############################################################
+# Pacote de criação de aplicativo com atualização dinâmica #
+############################################################
+#                                                          #
+# Conteúdo embutido                                        #
+#                                                          #
+############################################################
+
+Para gerar o APK do aplicativo é necessário instalar o 
+ambiente de desenvolvimento Android Studio.
+
+1) É necessário ter uma conta ativa no google play store:
+
+https://play.google.com/apps/publish/
+
+2) É necessário seguir procedimento de publicação de arquivo .apk:
+
+https://developer.android.com/studio/publish/index.html
+
+3) Sempre que houver uma atualização do conteúdo embutido, é necessário
+incrementar a versão do aplicativo, gerar um novo APK e fazer upload para 
+o site da Play Store.
+
