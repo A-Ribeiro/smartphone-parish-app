@@ -1,9 +1,0 @@
-
-374635409422-g05v2cei994suhk68vi2gn7tlku6n3oj.apps.googleusercontent.com
-
-mysql:
-host localhost
-dbname id376600_aribeiro
-user id376600_spdoido
-password unreal
-

@@ -11,6 +11,8 @@
 *.sln text
 *.config text
 *.csproj text
+*.js text
+*.css text
 
 # Ensure those won't be messed up with
 *.jpg binary
@@ -18,3 +20,4 @@
 *.exe binary
 *.dll binary
 *.data binary
+*.gif binary
