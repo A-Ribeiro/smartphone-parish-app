@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="pt">
+	<head>
+		<title></title>
+		<style>
+			.div {
+				width:678px;
+				height:400px;
+				/*background:#acacac;*/
+				margin:0 auto;
+				padding:0;
+			}
+			.img1 {
+				float:left;
+				position:absolute;
+				height:400px;
+				width:226px;
+				margin:0;
+				padding:0;
+				z-index: 3;
+				opacity: 0.0;
+				filter: alpha(opacity=00);
+			}
+			.img2 {
+				float:left;
+				position:absolute;
+				height:400px;
+				width:226px;
+				margin:0;
+				padding:0;
+				z-index: 2;
+				opacity: 0.0;
+				filter: alpha(opacity=00);
+			}
+			.img3 {
+				float:left;
+				position:absolute;
+				height:400px;
+				width:226px;
+				margin:0;
+				padding:0;
+				z-index: 1;
+				opacity: 0.0;
+				filter: alpha(opacity=00);
+			}
+			body {
+				color:#ffffff;
+			}
+		</style>
+	</head>
+	<body style="background:#000000;font-family:helvetica;width:750px;margin:0 auto;" >
+		
+		
+		
+		<div id="divall" class="div" ><img id="i1" src="img/a1.jpg" class="img1" /><img id="i2" src="img/a2.jpg" class="img2" /><img id="i3" src="img/a3a.jpg" class="img3" /></div>
+		
+		<center>
+		
+		<h2>APLICATIVO SMARTPHONE PARA PARÓQUIAS</h2>
+		<h3>Crie um aplicativo smartphone android para a sua paróquia (0800), converse com o seu pároco e depois assista aos vídeos, que explicam passo a passo o que fazer:</h3>
+		<iframe width="420" height="315" src="https://www.youtube.com/embed/XGSy3_Czz8k"></iframe>
+		<iframe width="420" height="315" src="https://www.youtube.com/embed/XGSy3_Czz8k"></iframe>
+		<iframe width="420" height="315" src="https://www.youtube.com/embed/XGSy3_Czz8k"></iframe>
+		<iframe width="420" height="315" src="https://www.youtube.com/embed/XGSy3_Czz8k"></iframe>
+		<iframe width="420" height="315" src="https://www.youtube.com/embed/XGSy3_Czz8k"></iframe>
+		<iframe width="420" height="315" src="https://www.youtube.com/embed/XGSy3_Czz8k"></iframe>
+		<p>Copyright@2017 Alessandro Ribeiro</p>
+		</center>
+		
+		
+		
+		<script>
+			
+			var intervalToRead = 5000;
+			var intervalAlpha = 50;
+			//var intervalNormal = 100;
+			var intervalNormal = 50;
+			
+			//var div = document.getElementById('divall');
+			//var rect = div.getBoundingClientRect();
+			//console.log(rect.top, rect.right, rect.bottom, rect.left);
+			
+			var imgs = [
+				document.getElementById('i1'),
+				document.getElementById('i2'),
+				document.getElementById('i3')
+			];
+			
+			var alpha = 0.0;
+			var timelerp = 0;
+			
+			function init_animation() {
+				timelerp = 0;
+				setTimeout(alphaStage, 1000);
+			}
+			
+			function alphaStage() {
+				
+				timelerp = Math.min( timelerp + 0.06, 1.0 );
+				var alpha = easeOutExpo( timelerp, 0.0, 1.0, 1.0 );
+				
+				imgs[0].style.opacity = String(alpha);
+				imgs[0].style.filter  = 'alpha(opacity='+String( Math.round(alpha*100))+')'; // IE fallback
+				
+				if (alpha >= 1.0) {
+					imgs[1].style.opacity = "1.0";
+					imgs[1].style.filter  = 'alpha(opacity=100)'; // IE fallback
+					imgs[1].style.marginLeft = ( 0) + "px";
+					setTimeout(slideStageA, intervalNormal);
+					timelerp = 0;
+				} else
+					setTimeout(alphaStage, intervalAlpha);
+			}
+			
+			
+			function slideStageA() {
+				timelerp = Math.min( timelerp + 0.1, 1.0 );
+				var v = easeOutExpo( timelerp, 0.0, 226.0, 1.0 );
+				imgs[1].style.marginLeft = (v) + "px";
+				
+				if (timelerp >=1.0 ){
+					imgs[2].style.opacity = "1.0";
+					imgs[2].style.filter  = 'alpha(opacity=100)'; // IE fallback
+					imgs[2].style.marginLeft = (226) + "px";
+					setTimeout(slideStageB, intervalNormal);
+					timelerp = 0;
+				} else {
+					setTimeout(slideStageA, intervalNormal);
+				}
+			}
+			
+			function slideStageB() {
+				timelerp = Math.min( timelerp + 0.1, 1.0 );
+				var v = easeOutExpo( timelerp, 0 , 226.0 , 1.0 ) + 226.0;
+				imgs[2].style.marginLeft = (v) + "px";
+				
+				if (timelerp >=1.0 ) {
+					setTimeout(slideStageC, intervalToRead);
+					timelerp = 0;
+				} else {
+					setTimeout(slideStageB, intervalNormal);
+				}
+			}
+			
+			function slideStageC() {
+				timelerp = Math.min( timelerp + 0.1, 1.0 );
+				var v = - easeOutExpo( timelerp, 0 , 226.0 , 1.0 ) + 226.0*2.0;
+				imgs[2].style.marginLeft = (v) + "px";
+				
+				if (timelerp >=1.0 ) {
+				
+					imgs[2].src = 'img/a4c.jpg';
+					timelerp = 0;
+					
+					_callback = slideStageD;
+					checkIMGLoaded();
+					
+				} else {
+					setTimeout(slideStageC, intervalNormal);
+				}
+			}
+			
+			function slideStageD() {
+				timelerp = Math.min( timelerp + 0.1, 1.0 );
+				var v = easeOutExpo( timelerp, 0 , 226.0 , 1.0 ) + 226.0;
+				imgs[2].style.marginLeft = (v) + "px";
+				
+				if (timelerp >=1.0 ) {
+					timelerp = 0;
+					setTimeout(slideStageE, intervalToRead);
+				} else {
+					setTimeout(slideStageD, intervalNormal);
+				}
+			}
+			
+			
+			function slideStageE() {
+				timelerp = Math.min( timelerp + 0.1, 1.0 );
+				var v = - easeOutExpo( timelerp, 0 , 226.0 , 1.0 ) + 226.0*2.0;
+				imgs[2].style.marginLeft = (v) + "px";
+				
+				if (timelerp >=1.0 ) {
+					
+					timelerp = 0;
+					
+					imgs[2].style.opacity = "0.0";
+					imgs[2].style.filter  = 'alpha(opacity=0)'; // IE fallback
+					
+					setTimeout(slideStageF, intervalNormal);
+					
+				} else {
+					setTimeout(slideStageE, intervalNormal);
+				}
+			}
+			
+			function slideStageF() {
+				timelerp = Math.min( timelerp + 0.1, 1.0 );
+				var v = - easeOutExpo( timelerp, 0 , 226.0 , 1.0 ) + 226.0;
+				imgs[1].style.marginLeft = (v) + "px";
+				
+				if (timelerp >=1.0 ) {
+					
+					imgs[1].src = 'img/_a2.jpg';
+					imgs[2].src = 'img/_a3.jpg';
+					timelerp = 0;
+					
+					_callback = slideStage_A;
+					checkIMGLoaded();
+					
+				} else {
+					setTimeout(slideStageF, intervalNormal);
+				}
+			}
+			
+			function slideStage_A() {
+				timelerp = Math.min( timelerp + 0.1, 1.0 );
+				var v = easeOutExpo( timelerp, 0.0, 226.0, 1.0 );
+				imgs[1].style.marginLeft = (v) + "px";
+				
+				if (timelerp >=1.0 ){
+					imgs[2].style.opacity = "1.0";
+					imgs[2].style.filter  = 'alpha(opacity=100)'; // IE fallback
+					imgs[2].style.marginLeft = (226) + "px";
+					setTimeout(slideStage_B, intervalNormal);
+					timelerp = 0;
+				} else {
+					setTimeout(slideStage_A, intervalNormal);
+				}
+			}
+			
+			function slideStage_B() {
+				timelerp = Math.min( timelerp + 0.1, 1.0 );
+				var v = easeOutExpo( timelerp, 0 , 226.0 , 1.0 ) + 226.0;
+				imgs[2].style.marginLeft = (v) + "px";
+				
+				if (timelerp >=1.0 ) {
+					setTimeout(slideStage_C, intervalToRead);
+					timelerp = 0;
+				} else {
+					setTimeout(slideStage_B, intervalNormal);
+				}
+			}
+			
+			function slideStage_C() {
+				timelerp = Math.min( timelerp + 0.1, 1.0 );
+				var v = - easeOutExpo( timelerp, 0 , 226.0 , 1.0 ) + 226.0*2.0;
+				imgs[2].style.marginLeft = (v) + "px";
+				
+				if (timelerp >=1.0 ) {
+					timelerp = 0;
+					imgs[2].style.opacity = "0.0";
+					imgs[2].style.filter  = 'alpha(opacity=0)'; // IE fallback
+					setTimeout(slideStage_F, intervalNormal);
+				} else {
+					setTimeout(slideStage_C, intervalNormal);
+				}
+			}
+			
+			function slideStage_F() {
+				timelerp = Math.min( timelerp + 0.1, 1.0 );
+				var v = - easeOutExpo( timelerp, 0 , 226.0 , 1.0 ) + 226.0;
+				imgs[1].style.marginLeft = (v) + "px";
+				
+				if (timelerp >=1.0 ) {
+					imgs[1].style.opacity = "0.0";
+					imgs[1].style.filter  = 'alpha(opacity=0)'; // IE fallback
+					timelerp = 0;
+					setTimeout(alphaStageEnd, intervalNormal);
+					
+				} else {
+					setTimeout(slideStage_F, intervalNormal);
+				}
+			}
+			
+			function alphaStageEnd() {
+				
+				timelerp = Math.min( timelerp + 0.06, 1.0 );
+				var alpha = 1.0 - easeOutExpo( timelerp, 0.0, 1.0, 1.0 );
+				
+				imgs[0].style.opacity = String(alpha);
+				imgs[0].style.filter  = 'alpha(opacity='+String( Math.round(alpha*100))+')'; // IE fallback
+				
+				if (alpha <= 0.0) {
+					imgs[1].style.opacity = "0.0";
+					imgs[1].style.filter  = 'alpha(opacity=0)'; // IE fallback
+					
+					imgs[0].src = 'img/b1.jpg';
+					imgs[1].src = 'img/b2a.jpg';
+					timelerp = 0;
+					
+					imgs[0].style.marginLeft = (226.0*0.5) + "px";
+					
+					_callback = secondAlpha;
+					checkIMGLoaded();
+					
+					timelerp = 0;
+				} else
+					setTimeout(alphaStageEnd, intervalAlpha);
+			}
+			
+			
+			function secondAlpha() {
+				
+				timelerp = Math.min( timelerp + 0.06, 1.0 );
+				var alpha = easeOutExpo( timelerp, 0.0, 1.0, 1.0 );
+				
+				imgs[0].style.opacity = String(alpha);
+				imgs[0].style.filter  = 'alpha(opacity='+String( Math.round(alpha*100))+')'; // IE fallback
+				
+				if (alpha >= 1.0) {
+					imgs[1].style.opacity = "1.0";
+					imgs[1].style.filter  = 'alpha(opacity=100)'; // IE fallback
+					imgs[1].style.marginLeft = ( 0 + 226.0*0.5 ) + "px";
+					setTimeout(secondSlideStageA, intervalNormal);
+					timelerp = 0;
+				} else
+					setTimeout(secondAlpha, intervalAlpha);
+			}
+			
+			
+			function secondSlideStageA() {
+				timelerp = Math.min( timelerp + 0.1, 1.0 );
+				var v = easeOutExpo( timelerp, 0.0, 226.0, 1.0 );
+				imgs[1].style.marginLeft = (v + 226.0*0.5) + "px";
+				
+				if (timelerp >=1.0 ){
+					setTimeout(secondSlideStageB, intervalToRead);
+					timelerp = 0;
+				} else {
+					setTimeout(secondSlideStageA, intervalNormal);
+				}
+			}
+			
+			function secondSlideStageB() {
+				timelerp = Math.min( timelerp + 0.1, 1.0 );
+				var v = - easeOutExpo( timelerp, 0 , 226.0 , 1.0 ) + 226.0;
+				imgs[1].style.marginLeft = (v + 226.0*0.5) + "px";
+				
+				if (timelerp >=1.0 ) {
+					
+					imgs[1].src = 'img/b2b.jpg';
+					timelerp = 0;
+					
+					_callback = secondSlideStageC;
+					checkIMGLoaded();
+					
+				} else {
+					setTimeout(secondSlideStageB, intervalNormal);
+				}
+			}
+			
+			
+			function secondSlideStageC() {
+				timelerp = Math.min( timelerp + 0.1, 1.0 );
+				var v = easeOutExpo( timelerp, 0.0, 226.0, 1.0 );
+				imgs[1].style.marginLeft = (v + 226.0*0.5) + "px";
+				
+				if (timelerp >=1.0 ){
+					setTimeout(secondSlideStageD, intervalToRead);
+					timelerp = 0;
+				} else {
+					setTimeout(secondSlideStageC, intervalNormal);
+				}
+			}
+			
+			function secondSlideStageD() {
+				timelerp = Math.min( timelerp + 0.1, 1.0 );
+				var v = - easeOutExpo( timelerp, 0 , 226.0 , 1.0 ) + 226.0;
+				imgs[1].style.marginLeft = (v + 226.0*0.5) + "px";
+				
+				if (timelerp >=1.0 ) {
+					
+					imgs[1].src = 'img/b2c.jpg';
+					timelerp = 0;
+					
+					_callback = secondSlideStageE;
+					checkIMGLoaded();
+					
+				} else {
+					setTimeout(secondSlideStageD, intervalNormal);
+				}
+			}
+			
+			
+			function secondSlideStageE() {
+				timelerp = Math.min( timelerp + 0.1, 1.0 );
+				var v = easeOutExpo( timelerp, 0.0, 226.0, 1.0 );
+				imgs[1].style.marginLeft = (v + 226.0*0.5) + "px";
+				
+				if (timelerp >=1.0 ){
+					setTimeout(secondSlideStageF, intervalToRead);
+					timelerp = 0;
+				} else {
+					setTimeout(secondSlideStageE, intervalNormal);
+				}
+			}
+			
+			function secondSlideStageF() {
+				timelerp = Math.min( timelerp + 0.1, 1.0 );
+				var v = - easeOutExpo( timelerp, 0 , 226.0 , 1.0 ) + 226.0;
+				imgs[1].style.marginLeft = (v + 226.0*0.5) + "px";
+				
+				if (timelerp >=1.0 ) {
+					
+					//imgs[1].src = 'img/b2c.jpg';
+					imgs[1].style.opacity = "0.0";
+					imgs[1].style.filter  = 'alpha(opacity=0)'; // IE fallback
+					timelerp = 0;
+					
+					setTimeout(secondAlphaStageEnd, intervalNormal);
+					
+				} else {
+					setTimeout(secondSlideStageF, intervalNormal);
+				}
+			}
+			
+			function secondAlphaStageEnd() {
+				
+				timelerp = Math.min( timelerp + 0.06, 1.0 );
+				var alpha = 1.0 - easeOutExpo( timelerp, 0.0, 1.0, 1.0 );
+				
+				imgs[0].style.opacity = String(alpha);
+				imgs[0].style.filter  = 'alpha(opacity='+String( Math.round(alpha*100))+')'; // IE fallback
+				
+				if (alpha <= 0.0) {
+					imgs[1].style.opacity = "0.0";
+					imgs[1].style.filter  = 'alpha(opacity=0)'; // IE fallback
+					
+					imgs[0].src = 'img/c1.jpg';
+					//imgs[1].src = 'img/b2a.jpg';
+					timelerp = 0;
+					
+					imgs[0].style.marginLeft = (226.0) + "px";
+					
+					_callback = thirdAlpha;
+					checkIMGLoaded();
+					
+					timelerp = 0;
+				} else
+					setTimeout(secondAlphaStageEnd, intervalAlpha);
+			}
+			
+			
+			
+			
+			function thirdAlpha() {
+				
+				timelerp = Math.min( timelerp + 0.06, 1.0 );
+				var alpha = easeOutExpo( timelerp, 0.0, 1.0, 1.0 );
+				
+				imgs[0].style.opacity = String(alpha);
+				imgs[0].style.filter  = 'alpha(opacity='+String( Math.round(alpha*100))+')'; // IE fallback
+				
+				if (alpha >= 1.0) {
+					
+					setTimeout(thirdAlphaEnd, intervalToRead);
+					timelerp = 0;
+				} else
+					setTimeout(thirdAlpha, intervalAlpha);
+			}
+			
+			function thirdAlphaEnd() {
+				
+				timelerp = Math.min( timelerp + 0.06, 1.0 );
+				var alpha = 1.0 - easeOutExpo( timelerp, 0.0, 1.0, 1.0 );
+				
+				imgs[0].style.opacity = String(alpha);
+				imgs[0].style.filter  = 'alpha(opacity='+String( Math.round(alpha*100))+')'; // IE fallback
+				
+				if (alpha <= 0.0) {
+					
+					imgs[0].src = 'img/d1.jpg';
+					//imgs[1].src = 'img/b2a.jpg';
+					timelerp = 0;
+					
+					_callback = fouthAlpha;
+					checkIMGLoaded();
+					
+					timelerp = 0;
+				} else
+					setTimeout(thirdAlphaEnd, intervalAlpha);
+			}
+			
+			
+			
+			function fouthAlpha() {
+				
+				timelerp = Math.min( timelerp + 0.06, 1.0 );
+				var alpha = easeOutExpo( timelerp, 0.0, 1.0, 1.0 );
+				
+				imgs[0].style.opacity = String(alpha);
+				imgs[0].style.filter  = 'alpha(opacity='+String( Math.round(alpha*100))+')'; // IE fallback
+				
+				if (alpha >= 1.0) {
+					
+					setTimeout(fouthAlphaEnd, intervalToRead);
+					timelerp = 0;
+				} else
+					setTimeout(fouthAlpha, intervalAlpha);
+			}
+			
+			function fouthAlphaEnd() {
+				
+				timelerp = Math.min( timelerp + 0.06, 1.0 );
+				var alpha = 1.0 - easeOutExpo( timelerp, 0.0, 1.0, 1.0 );
+				
+				imgs[0].style.opacity = String(alpha);
+				imgs[0].style.filter  = 'alpha(opacity='+String( Math.round(alpha*100))+')'; // IE fallback
+				
+				if (alpha <= 0.0) {
+					
+					imgs[0].src = 'img/a1.jpg';
+					imgs[1].src = 'img/a2.jpg';
+					imgs[2].src = 'img/a3a.jpg';
+					
+					imgs[0].style.marginLeft = (0) + "px";
+					
+					timelerp = 0;
+					
+					_callback = init_animation;
+					checkIMGLoaded();
+					
+					timelerp = 0;
+				} else
+					setTimeout(fouthAlphaEnd, intervalAlpha);
+			}
+			
+			// t: current time, 
+			// b: begInnIng value, 
+			// c: change In value, 
+			// d: duration
+			function easeOutExpo (t, b, c, d) {
+				if (t==d)
+					return b + c;
+				else 
+					return c * ( -Math.pow( 2, -10 * t/d) + 1) + b;
+			}
+			
+			
+			//wait image load
+			var _callback;
+			function checkIMGLoaded() {
+				if (!imgs[0].complete || !imgs[1].complete || !imgs[2].complete)
+					setTimeout(checkIMGLoaded, intervalNormal);
+				else
+					_callback();
+			}
+			
+			_callback = init_animation;
+			checkIMGLoaded();
+			
+		</script>
+	</body>
+</html>
