@@ -38,6 +38,10 @@ The Youtube videos where created to give a step-by-step guideline related to the
 
 1. [FileZilla](https://filezilla-project.org/)
 
+### Local HTTP Server
+
+1. [XAMPP](https://www.apachefriends.org/pt_br/index.html)
+
 ### 3rd Party Services That Needs Account Configuration
 
 1. [Google Play Developer](https://play.google.com/apps/publish/)
@@ -83,6 +87,10 @@ Os vídeos no Youtube foram criados para servir como guias passo a passo relacio
 ### Software de Transferência de arquivos (FTP)
 
 1. [FileZilla](https://filezilla-project.org/)
+
+### Servidor HTTP Local
+
+1. [XAMPP](https://www.apachefriends.org/pt_br/index.html)
 
 ### Serviços de terceiros que necessitam de configuração de contas
 
