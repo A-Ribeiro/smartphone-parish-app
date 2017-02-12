@@ -31,3 +31,5 @@
 *.woff2 binary
 *.apk binary
 *.jar binary
+*.pptx binary
+
