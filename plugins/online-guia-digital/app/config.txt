@@ -1,0 +1,8 @@
+No Celular
+Guias Digitais
+<li>
+	<a href="guia-digital/index.html" rel="external" >
+		<img alt="image" src="guia-digital/news-guia.jpg" />
+		<h2>Guias Digitais</h2>
+	</a>
+</li>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="pt">
+	<head>
+		<title></title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="../../builtin/js/orangetheme.min.css" />
+		<link rel="stylesheet" href="../../content/js/theme.min.css" />
+		<link rel="stylesheet" href="../../builtin/js/jquery.mobile.icons-1.4.5.min.css" />
+		<link rel="stylesheet" href="../../builtin/js/jquery.mobile.structure-1.4.5.min.css" />
+		<script src="../../builtin/js/jquery.min.js"></script>
+		<script src="../../builtin/js/jquery.mobile-1.4.5.min.js"></script>
+		<!--script src="saints.js"></script-->
+		<!--link rel="stylesheet" href="../../builtin/js/liturgia.css" /-->
+		<link rel="stylesheet" href="../../builtin/js/customfont.css" />
+		
+		<!--script type="text/javascript" src="jszip.min.js"></script-->
+		
+		<style>
+		
+		.underline:after {
+			content: '';
+			display: block;
+			/*position: absolute;*/
+			height: 4px;
+			width: 40px;
+			bottom: 0;
+			left: 0;
+			background-color: #275683;
+			box-sizing: border-box;
+			
+			margin-top:0.5em;
+			margin-bottom:2.0em;
+			
+		}
+		
+		.fixtitle h1 {
+			margin: 0.0em 0.7em 0.0em 5.7em !important;
+		}
+		
+		.tab {
+			font-family: 'PT Serif', serif;
+		}
+		
+		#contenttitle {
+			font-size:90%;
+		}
+
+		.numb {
+			margin-left:0.125em;
+			margin-right:0.125em;
+			padding-left:0.125em;
+			padding-right:0.125em;
+			
+			font-family: 'PT Serif', serif;
+			
+			background-color: #CCCCCC;
+			color: #275683;
+		}
+		
+		
+		.ident {
+			padding-left:-1.0em;
+			text-indent:1.0em;
+			
+			margin-bottom:0.2em;
+			margin-top:0.25em;
+			
+			line-height:1.5em;
+			
+			text-align: justify;
+			text-justify: inter-word;
+		}
+		
+		.identtitle {
+			padding-left:-1.0em;
+			text-indent:1.0em;
+			
+			font-weight:bold;
+			margin-bottom:1.0em;
+			margin-top:1.0em;
+			
+			font-family: 'PT Serif', serif;
+			color: #275683;
+			
+		}
+		
+		#text p {
+			
+			margin-bottom:0.2em;
+			margin-top:0.25em;
+			
+			line-height:1.5em;
+			
+			text-align: justify;
+			text-justify: inter-word;
+		}
+		
+		.identar {
+			padding-left:-1.0em;
+			text-indent:1.0em;
+		}
+		
+		.destacar {
+			background-color: #ffffd0;
+			padding-left:1em;
+			padding-right:1em;
+			padding-top:1em;
+			padding-bottom:1em;
+			font-style:italic;
+		}
+		
+		</style>
+
+		<script>
+		function deviceBackPress() {
+			window.history.back();
+		}
+
+		$(document).bind("mobileinit", function(){
+			$.extend(  $.mobile , {
+				ajaxEnabled: false
+			});
+		});
+		
+		function randomInt(min, max) {
+			return parseInt(Math.floor(Math.random() * (max - min + 1)) + min);
+		}
+		
+		function localParam() {
+			var paramList = window.location.href.split("?");
+			if (paramList.length == 2)
+				return paramList[1];
+			else
+				return null;
+		}
+		
+		function loadEnd() {
+		}
+		
+		function getParametersHash() {
+			var searchString = window.location.search.substring(1),
+				params = searchString.split("&"),
+				hash = {};
+			if (searchString == "") return {};
+			for (var i = 0; i < params.length; i++) {
+				var val = params[i].split("=");
+				hash[unescape(decodeURIComponent(val[0]))] = unescape(decodeURIComponent(val[1])).split('+').join(' ');
+			}
+			return hash;
+		}
+		
+		</script>
+	</head>
+
+	<body onload="loadEnd();" >
+	
+		<div data-role="page" id="arquidiocesebh" >
+			<div data-role="header"  class="fixtitle" >
+				<a href='#' class='ui-btn-left' data-icon='arrow-l' onclick="deviceBackPress();">Voltar</a>
+				<h1>Guia Digital</h1>
+			</div>
+			<div role="main" class="ui-content" >
+			<ul data-role="listview" data-inset="false" data-divider-theme="a" >
+				
+				<li data-role="list-divider">
+					Novenas
+				</li>
+				
+				<li>
+					<a href="guia.html?file=novena-natal.json" rel="external" >
+					<img alt="image" src="news-novena-natal.jpg" />
+					<h2>Novena de Natal 2016</h2>
+					</a>
+				</li>
+				
+				<li>
+					<a href="guia.html?file=novena-natal.json&external-music=novena-natal-customizacao-musical.json" rel="external" >
+					<img alt="image" src="news-novena-natal.jpg" />
+					<h2>Novena de Natal 2016</h2>
+					<p>Seleção de músicas: Alberto</p>
+					</a>
+				</li>
+				
+				<li>
+					<a href="guia.html?file=novena-nossa-senhora-do-carmo.json" rel="external" >
+					<img alt="image" src="news-novena.jpg" />
+					<h2>Novena de Nossa Senhora do Carmo</h2>
+					</a>
+				</li>
+				
+				<li data-role="list-divider">
+					Outros documentos de exemplo
+				</li>
+				
+				<li>
+					<a href="guia.html?file=guia-formacao-jovens.json" rel="external" >
+					<img alt="image" src="news-guia.jpg" />
+					<h2>Planejamento da formação dos Jovens</h2>
+					<p>Encontros de formação do grupo de Jovens</p>
+					</a>
+				</li>
+				
+				<li data-role="list-divider">
+					Guias semanais
+				</li>
+				
+				<li>
+					<a href="guia.html?file=guia-oracoes.json" rel="external" >
+					<img alt="image" src="news-guia.jpg" />
+					<h2>Guia de Orações</h2>
+					<p>Sugestão de orações por dia da semana</p>
+					</a>
+				</li>
+				
+			</ul>
+			</div>
+		</div>
+		
+	</body>
+</html>

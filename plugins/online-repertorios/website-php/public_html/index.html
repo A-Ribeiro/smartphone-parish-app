@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="pt">
+	<head>
+		<link rel="icon" type="image/png" sizes="192x192"  href="android-icon-192x192.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+		
+		<script src="config.js"></script>
+		
+		<!-- GOOGLE SIGN IN -->
+		<script>
+		
+var db_last_op = '';
+var googleAuth = null;
+var ready = false;
+
+		function onLoadCallback() {
+			//console.log('onload google api...');
+			
+			if (typeof gapi !== 'undefined')
+			gapi.load('auth2', 
+				function() {
+					gapi.auth2
+						.init({client_id: googleClientID})
+						.then(function(auth2) {
+							googleAuth = gapi.auth2.getAuthInstance();
+							
+							googleAuth.isSignedIn.listen(
+								function(signedIN) {
+									setLogoutVisibility();
+									if (!signedIN){
+										//$('#options').panel('close');
+									}else {
+										
+										if (db_last_op == 'restore')
+											$('#popup').popup('open');
+										
+									}
+									db_last_op = '';
+								}
+							);
+							
+							setLogoutVisibility();
+							
+						});
+				}
+			);
+
+		}
+		</script>
+		
+		<title></title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="js/orangetheme.min.css" />
+		<link rel="stylesheet" href="js/jquery.mobile.icons-1.4.5.min.css" />
+		<link rel="stylesheet" href="js/jquery.mobile.structure-1.4.5.min.css" />
+		<script src="js/jquery.min.js"></script>
+		<script src="js/jquery.mobile-1.4.5.min.js"></script>
+		
+		<link rel="stylesheet" href="js/customfont.css" />
+		<script src="rest.js"></script>
+
+		<script>
+			if ( googleClientID != "" ) {
+				$("head").append('\<script src="https://apis.google.com/js/platform.js?onload=onLoadCallback" async defer\>\</script\>');
+			}
+			
+			//Editar Musica
+			if (sessionStorage.oldRecord)
+				delete sessionStorage.oldRecord;
+			if (sessionStorage.list)
+				delete sessionStorage.list;
+			if (sessionStorage.lastmodify)
+				delete sessionStorage.lastmodify;
+			
+			//Editar Repertório
+			if (sessionStorage.selectedScript)
+				delete sessionStorage.selectedScript;
+			//if (localStorage.musico)
+				//delete localStorage.musico;
+			if (sessionStorage.oldScriptID)
+				delete sessionStorage.oldScriptID;
+			if (sessionStorage.scriptlistcache)
+				delete sessionStorage.scriptlistcache;
+			
+		</script>
+		<!--script src="https://apis.google.com/js/platform.js?onload=onLoadCallback" async defer></script-->
+		<!--script src="https://apis.google.com/js/platform.js" async defer></script-->
+		<!-- GOOGLE SIGN IN -->
+
+		
+		<style>
+		
+		.fixtitle h1 {
+			margin: 0.0em 0.7em 0.0em 0.7em !important;
+		}
+		
+		
+		</style>
+
+		<script>
+
+function setLogoutVisibility(){
+	if (ready && googleAuth != null) {
+		//console.log('setLogoutVisibility .. valid');
+		if ( googleAuth.isSignedIn.get() ) {
+			//console.log('logged in');
+			$('#logout_google').css('display','block');
+			
+			var googleUser = googleAuth.currentUser.get();
+			var basicProfile = googleUser.getBasicProfile();
+			
+			//console.log( basicProfile.getName() );
+			//console.log( basicProfile.getEmail() );
+			$('#logout-email').text(basicProfile.getEmail());
+		}
+		else {
+			//console.log('not logged in');
+			$('#logout_google').css('display','none');
+		}
+	}
+}
+
+function logout_google() {
+	if (googleAuth != null) {
+		//$('#logout_google').hide();
+		if ( googleAuth.isSignedIn.get() )
+			googleAuth.signOut();
+	}
+}
+		//var canGoBack = false;
+		
+		// device events
+		function deviceBackPress() {
+			window.history.back();
+		}
+
+		$(document).bind("mobileinit", function(){
+			$.extend(  $.mobile , {
+				ajaxEnabled: false
+			});
+		});
+		
+		function randomInt(min, max) {
+			return parseInt(Math.floor(Math.random() * (max - min + 1)) + min);
+		}
+		
+		
+		function loadEnd() {
+		}
+		
+		function getParametersHash() {
+			var searchString = window.location.search.substring(1),
+				params = searchString.split("&"),
+				hash = {};
+			if (searchString == "") return {};
+			for (var i = 0; i < params.length; i++) {
+				var val = params[i].split("=");
+				hash[unescape(decodeURIComponent(val[0]))] = unescape(decodeURIComponent(val[1])).split('+').join(' ');
+			}
+			return hash;
+		}
+		
+		
+		// example: 
+		//   localDownload('repertorio.json','json content','application/json','utf-8')
+		function localDownload(filename,text,_type,charset){
+			// Set up the link
+			var link = document.createElement("a");
+			link.setAttribute("target","_blank");
+			if(Blob !== undefined) {
+				var blob = new Blob([text], {encoding: charset,
+											type: _type + ";charset=" + charset });
+				link.setAttribute("href", URL.createObjectURL(blob));
+			} else {
+				link.setAttribute("href","data:"+_type+",charset="+charset+"," + encodeURIComponent(text));
+			}
+			link.setAttribute("download",filename);
+			document.body.appendChild(link);
+			link.click();
+			document.body.removeChild(link);
+		}
+		
+		Date.prototype.yyyymmddhhmmss = function() {
+			var yyyy = this.getFullYear();
+			var mm = this.getMonth() < 9 ? "0" + (this.getMonth() + 1) : (this.getMonth() + 1); // getMonth() is zero-based
+			var dd  = this.getDate() < 10 ? "0" + this.getDate() : this.getDate();
+			var hh = this.getHours() < 10 ? "0" + this.getHours() : this.getHours();
+			var min = this.getMinutes() < 10 ? "0" + this.getMinutes() : this.getMinutes();
+			var ss = this.getSeconds() < 10 ? "0" + this.getSeconds() : this.getSeconds();
+			return "".concat(yyyy).concat('-').concat(mm).concat('-').concat(dd).concat('_').concat(hh).concat('h').concat(min).concat('m').concat(ss).concat('s');
+		};
+
+
+		function backupRequest(idtoken) {
+			dumpfile_download({
+					token: idtoken,
+					onSuccess: function(data,status){
+						//console.log( JSON.stringify(data) );
+						
+						var date = new Date();
+						localDownload('backup_'+
+							date.yyyymmddhhmmss()+
+							'.json',JSON.stringify(data),'application/json','utf-8');
+						
+						//window.history.back();
+						
+						//$("#popupDialogReload").popup('open');
+						$('#options').panel('close');
+						
+					},
+					onFail: function(data,status){
+						
+						if ( data['error'] != null && data['error'] == 'unauthorized')
+							$("#error-authorization").popup('open');
+						else
+							$("#popupDialog-error-backup").popup('open');
+						
+					},
+				});
+		}
+		
+		
+		function backup() {
+			db_last_op = '';
+			
+			if ( googleClientID == "" ) {
+				backupRequest("no-google-login");
+				return;
+			}
+			
+			//$('#options').panel('close');
+			//dumpfile_window_location_download_file();
+			if (googleAuth == null)
+				return;
+			
+			if ( googleAuth.isSignedIn.get() ) {
+				var googleUser = googleAuth.currentUser.get();
+				backupRequest(googleUser.getAuthResponse().id_token);
+			} else {
+				
+				db_last_op = 'backup';
+				googleAuth.signIn( { prompt:'select_account' } );
+				
+			}
+			
+		}
+		
+		function restaurar() {
+			db_last_op = '';
+			
+			if ( googleClientID == "" ) {
+				$('#upfile').click();
+				return;
+			}
+			
+			if (googleAuth == null)
+				return;
+			
+			if ( googleAuth.isSignedIn.get() ) {
+				$('#upfile').click();
+			} else {
+				db_last_op = 'restore';
+				googleAuth.signIn( { prompt:'select_account' } );
+			}
+				
+			
+		}
+		
+		function upload() {
+			$('#popup').popup('close');
+			$('#upfile').click();
+		}
+		
+		function handleFileRestore (files) {
+		
+			if ( googleClientID == "" ) {
+				
+				var file = files[0];
+				var reader = new FileReader();
+				// Handle errors load
+				reader.onload = function(event){
+					var data = event.target.result;
+					
+					//testServerCompression({
+					
+					dumpfile_restore({
+						token: "no-google-login",
+						json:data,
+						onSuccess: function(data,status){
+							console.log( JSON.stringify(data) );
+							
+							$("#popupDialogReload").popup('open');
+							$('#options').panel('close');
+							
+						},
+						onFail: function(data,status){
+							
+							if ( data['error'] != null && data['error'] == 'unauthorized')
+								$("#error-authorization").popup('open');
+							else
+								$("#popupDialog-error-restore").popup('open');
+							
+						},
+					});
+					
+					$("#upfile").val('');
+				};
+				// Read file into memory as UTF-8
+				reader.readAsText(file);
+				
+				return;
+			}
+			
+			if (googleAuth == null)
+				return;
+			
+			if ( googleAuth.isSignedIn.get() ) {
+				
+				var googleUser = googleAuth.currentUser.get();
+				//var basicProfile = googleUser.getBasicProfile();
+				
+				var file = files[0];
+				var reader = new FileReader();
+				// Handle errors load
+				reader.onload = function(event){
+					var data = event.target.result;
+					
+					//testServerCompression({
+					
+					dumpfile_restore({
+						token: googleUser.getAuthResponse().id_token,
+						json:data,
+						onSuccess: function(data,status){
+							console.log( JSON.stringify(data) );
+							
+							$("#popupDialogReload").popup('open');
+							$('#options').panel('close');
+							
+						},
+						onFail: function(data,status){
+							
+							if ( data['error'] != null && data['error'] == 'unauthorized')
+								$("#error-authorization").popup('open');
+							else
+								$("#popupDialog-error-restore").popup('open');
+							
+						},
+					});
+					
+					$("#upfile").val('');
+				};
+				// Read file into memory as UTF-8
+				reader.readAsText(file);
+				
+			} else {
+				$("#upfile").val('');
+			}
+		}
+
+		
+		
+		
+		$( document ).ready(function() {
+			console.log("document ready...");
+			ready = true;
+			setLogoutVisibility();
+		});
+		
+		</script>
+	</head>
+
+	<body onload="loadEnd();" >
+		<div data-role="page" id="mainmenu" >
+		
+		
+		
+		<div data-role="popup" id="popupDialogReload" data-dismissible="false" style="max-width:400px;">
+				<div data-role="header" >
+					<h1>Sucesso</h1>
+				</div>
+				<div role="main" class="ui-content" style="text-align:center;">
+					<h3 class="ui-title">Gravação concluída</h3>
+					<a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline" data-rel="back" data-transition="flow">OK</a>
+				</div>
+			</div>
+			
+			
+			<div data-role="popup" id="popupDialog-error-backup" data-dismissible="false" style="max-width:400px;">
+				<div data-role="header" >
+					<h1>Erro</h1>
+				</div>
+				<div role="main" class="ui-content" style="text-align:center;">
+					<h3 class="ui-title">Não foi possível realizar o backup do banco de dados.</h3>
+					<p>Contate o webmaster.</p>
+					<a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline" data-rel="back" data-transition="flow">OK</a>
+				</div>
+			</div>
+			
+			<div data-role="popup" id="popupDialog-error-restore" data-dismissible="false" style="max-width:400px;">
+				<div data-role="header" >
+					<h1>Erro</h1>
+				</div>
+				<div role="main" class="ui-content" style="text-align:center;">
+					<h3 class="ui-title">Não foi possível restaurar o banco de dados.</h3>
+					<p>Contate o webmaster.</p>
+					<a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline" data-rel="back" data-transition="flow">OK</a>
+				</div>
+			</div>
+			
+			<div data-role="popup" id="error-authorization" data-dismissible="false" style="max-width:400px;">
+				<div data-role="header" >
+					<h1>Erro</h1>
+				</div>
+				<div role="main" class="ui-content" style="text-align:center;">
+					<h3 class="ui-title">Não foi possível realizar essa operação</h3>
+					<p>Você não tem permissão de fazer backup e restauração do banco de dados.</p>
+					<p>Converse com o webmaster para essa configuração.</p>
+					<a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline" data-rel="back" data-transition="flow">OK</a>
+				</div>
+			</div>
+		
+		
+		
+		
+		
+			<div data-role="popup" id="popup" data-dismissible="false" style="max-width:400px;">
+				<div data-role="header" >
+					<h1>Login</h1>
+				</div>
+				<div role="main" class="ui-content" style="text-align:center;">
+					<h3 class="ui-title">Login bem sucedido</h3>
+					<!--p>Ao clicar em OK irá dar prosseguimento o processo de restauração.</p-->
+					<a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline" onclick="upload();" >Restaurar</a>
+				</div>
+			</div>
+			
+			<div data-role="panel" data-display="overlay" data-position="right" id="options">
+				<!-- panel content goes here -->
+				<h3>Opções</h3>
+				<ul data-role="listview" data-inset="false">
+					<li data-role="list-divider"><h1>Dados</h1></li>
+					<li data-icon="false"><a href="#" onclick="backup();" >Backup</a></li>
+					<li data-icon="false"><a href="#" onclick="restaurar();" >Restaurar</a></li>
+					<li data-role="list-divider">&nbsp;</li>
+					<li data-icon="false"><a id="logout_google" style="display:none;" href="#" onclick="logout_google();" >Logout<br /><small id="logout-email"></small></a></li>
+				</ul>
+				<input data-role="none" style="display:none;visibility:hidden;" id="upfile" type="file" onchange="handleFileRestore(this.files)" accept=".json" >
+			</div><!-- /panel -->
+		
+		
+		
+		
+		
+			<div data-role="header"  class="fixtitle" >
+				<!--a href='#' class='ui-btn-left' data-icon='arrow-l' onclick="deviceBackPress();" >Voltar</a-->
+				<a id="save-btn" href='#' class='ui-btn-right' onclick="deviceBackPress();" style="visibility:hidden;" >Dummy</a>
+				<a id="options-btn" href='#options' class='ui-btn ui-shadow ui-corner-all ui-icon-bars ui-btn-icon-notext'    style="float:right;margin-left:0;margin-bottom:0;margin-right:0.75em;margin-top:0.25em;" >Opções</a>
+				
+				<h1>Área dos Músicos</h1>
+			</div>
+			
+			<ul data-role="listview" data-inset="false" data-divider-theme="a" >
+				<li data-role="list-divider">Editar</li>
+				<li><a href="editar-musica.html" rel="external" ><h2>Música</h2></a></li>
+				<li><a href="editar-repertorio.html" rel="external" ><h2>Repertorio</h2></a></li>
+				<li data-role="list-divider">&nbsp;</li>
+				<li>
+				<div>
+					<!--h3 style="white-space:normal;text-align: justify;text-justify: inter-word;" >Política de privacidade</h3-->
+					<h3><big>Política de privacidade</big></h3>
+					<p style="white-space:normal;text-align: justify;text-justify: inter-word;" >A plataforma online de música e repertório é responsável somente pela tecnologia de armazenamento, processamento e visualização de dados.</p>
+					<h3>Usuários</h3>
+					<p style="white-space:normal;text-align: justify;text-justify: inter-word;" >É considerado um usuário do sistema qualquer pessoa que acesse o mesmo somente em modo de leitura dos dados.</p>
+					<p style="white-space:normal;text-align: justify;text-justify: inter-word;" >Um usuário pode: visualizar músicas, visualizar repertórios e exportar um conjunto de repertórios para integração externa.</p>
+					<h3>Usuários com permissão de gravação</h3>
+					<p style="white-space:normal;text-align: justify;text-justify: inter-word;" >Para ser um usuário com permissão de gravação, é necessário utilizar a conta do google e entrar em contato com o webmaster para cadastrar o seu email no sistema.</p>
+					<p style="white-space:normal;text-align: justify;text-justify: inter-word;" >Quando um usuário possuir a permissão de gravação no sistema, o mesmo é capaz de editar/criar músicas ou repertórios.</p>
+					<p style="white-space:normal;text-align: justify;text-justify: inter-word;" >São armazenados juntamente aos dados do sistema o nome e email do responsável pela última alteração da música ou repertório.</p>
+					<h3>Usuários com permissão de backup/restauração de dados</h3>
+					<p style="white-space:normal;text-align: justify;text-justify: inter-word;" >Para ser um usuário com permissão de backup/restauração de dados, é necessário utilizar a conta do google e entrar em contato com o webmaster para cadastrar o seu email no sistema.</p>
+					<p style="white-space:normal;text-align: justify;text-justify: inter-word;" >Um usuário pode ter permissão de fazer backup e restauração do banco de dados do sistema.</p>
+					<p style="white-space:normal;text-align: justify;text-justify: inter-word;" >Esse usuário tem acesso ao arquivo de backup(através da ferramenta). Esse arquivo contém todas as contribuições (músicas ou repertórios) associadas ao nome e email dos <b>Usuários com permissão de gravação</b> que criaram esse conteúdo.</p>
+					<h3>Exportação de arquivos .PDF</h3>
+					<p style="white-space:normal;text-align: justify;text-justify: inter-word;" >Para utilizar a função de exportação de arquivos com extensão <i>.PDF</i>, o usuário deve utilizar sua conta do google.</p>
+					<p style="white-space:normal;text-align: justify;text-justify: inter-word;" >Nessa situação, nenhum dado do usuário é armazenado no sistema.</p>
+					<p style="white-space:normal;text-align: justify;text-justify: inter-word;" >A informação de <b>nome do usuário</b> será utilizada para preencher o campo de autor da geração automática do arquivo com extensão <i>.PDF</i> .</p>
+				</div>
+				</li>
+				<li data-role="list-divider">&nbsp;</li>
+			</ul>
+			
+		</div>
+		
+	</body>
+</html>

@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="pt">
+	<head>
+		<title></title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="../../builtin/js/orangetheme.min.css" />
+		<link rel="stylesheet" href="../../content/js/theme.min.css" />
+		<link rel="stylesheet" href="../../builtin/js/jquery.mobile.icons-1.4.5.min.css" />
+		<link rel="stylesheet" href="../../builtin/js/jquery.mobile.structure-1.4.5.min.css" />
+		<script src="../../builtin/js/jquery.min.js"></script>
+		<script src="../../builtin/js/jquery.mobile-1.4.5.min.js"></script>
+		<!--script src="saints.js"></script-->
+		<!--link rel="stylesheet" href="../../builtin/js/liturgia.css" /-->
+		<link rel="stylesheet" href="../../builtin/js/customfont.css" />
+		
+		
+		<!--script type="text/javascript" src="jszip.min.js"></script-->
+		
+		
+		<style>
+		
+		
+		.underline:after {
+			content: '';
+			display: block;
+			/*position: absolute;*/
+			height: 4px;
+			width: 40px;
+			bottom: 0;
+			left: 0;
+			background-color: #275683;
+			box-sizing: border-box;
+			
+			margin-top:0.5em;
+			margin-bottom:2.0em;
+			
+		}
+		
+		.fixtitle h1 {
+			margin: 0.0em 0.7em 0.0em 5.7em !important;
+		}
+		
+		.tab {
+			font-family: 'PT Serif', serif;
+		}
+		
+		#contenttitle {
+			font-size:90%;
+		}
+
+		.numb {
+			margin-left:0.125em;
+			margin-right:0.125em;
+			padding-left:0.125em;
+			padding-right:0.125em;
+			
+			font-family: 'PT Serif', serif;
+			
+			background-color: #CCCCCC;
+			color: #275683;
+		}
+		
+		
+		.ident {
+			padding-left:-1.0em;
+			text-indent:1.0em;
+			
+			margin-bottom:0.2em;
+			margin-top:0.25em;
+			
+			line-height:1.5em;
+			
+			text-align: justify;
+			text-justify: inter-word;
+		}
+		
+		.identtitle {
+			padding-left:-1.0em;
+			text-indent:1.0em;
+			
+			font-weight:bold;
+			margin-bottom:1.0em;
+			margin-top:1.0em;
+			
+			font-family: 'PT Serif', serif;
+			color: #275683;
+			
+		}
+		
+		#text p {
+			
+			margin-bottom:0.2em;
+			margin-top:0.25em;
+			
+			line-height:1.5em;
+			
+			text-align: justify;
+			text-justify: inter-word;
+		}
+		
+		.identar {
+			padding-left:-1.0em;
+			text-indent:1.0em;
+		}
+		
+		.destacar {
+			background-color: #ffffd0;
+			padding-left:1em;
+			padding-right:1em;
+			padding-top:1em;
+			padding-bottom:1em;
+			font-style:italic;
+		}
+		
+		</style>
+
+		<script>
+		
+		//var canGoBack = false;
+		
+		// device events
+		function deviceBackPress() {
+			//android.forwardBackPress();
+			//alert("android.forwardBackPress");
+			//window.history.back();
+			//if (canGoBack)
+			//document.location.href='../../content/noticia.html';
+			window.history.back();
+		}
+
+		$(document).bind("mobileinit", function(){
+			//$.mobile.changePage.defaults.changeHash = false;
+			//$.mobile.hashListeningEnabled = false;
+			//$.mobile.pushStateEnabled = false;//this is the main problem...
+			$.extend(  $.mobile , {
+				ajaxEnabled: false
+			});
+		});
+		
+		function randomInt(min, max) {
+			return parseInt(Math.floor(Math.random() * (max - min + 1)) + min);
+		}
+		
+		function localParam() {
+			var paramList = window.location.href.split("?");
+			if (paramList.length == 2)
+				return paramList[1];
+			else
+				return null;
+		}
+		
+		
+		function loadEnd() {
+		/*
+			var param = localParam();
+			if (param != null){
+				//scroll to the param
+				var element = $("li#"+param);
+				if (element != null ) {
+					
+					$('html,body').animate({scrollTop: $(element).offset().top});
+					//document.document.documentElement.scrollTop = $(element).offset().top;
+					//document.body.scrollTop = $(element).offset().top;
+				}
+			}
+			*/
+		}
+		
+		function getParametersHash() {
+			var searchString = window.location.search.substring(1),
+				params = searchString.split("&"),
+				hash = {};
+			if (searchString == "") return {};
+			for (var i = 0; i < params.length; i++) {
+				var val = params[i].split("=");
+				hash[unescape(decodeURIComponent(val[0]))] = unescape(decodeURIComponent(val[1])).split('+').join(' ');
+			}
+			return hash;
+		}
+		
+		
+		var musicHash = {};
+		var musicFile = {};
+		
+		function setMusiclink(data) {
+			//console.log('processing json: '+data);
+			window.musichlink = JSON.parse(decodeURI(data));
+		}
+		
+		function setMusic(music) {
+			
+			//alert(JSON.stringify(music));
+			
+			$("#musica-content").empty();
+			if ( music["title"] != null )
+				$("#musica-content").append('<h2 style="padding-bottom:0em;margin-bottom:0em;color: #333333;font-weight: 400;padding-top:0em;margin-top:0em;">' + music["title"].replace(/\\n/g,"<br />") + '</h2>');
+			if ( music["author"] != null )
+				$("#musica-content").append('<div style="font-style:italic;font-size:90%;">'+music["author"].replace(/\\n/g,"<br />") +'</div>');
+			
+			for (var i=0;i<music['parts'].length;i++) {
+				var part = music['parts'][i];
+				if (part['__type']=="chorus") {
+					$("#musica-content").append('<p><b>'+part['txt'].replace(/\\n/g,"<br />")+'</b></p>');
+				} else if (part['__type']=="verse") {
+					$("#musica-content").append('<p>'+part['txt'].replace(/\\n/g,"<br />")+'</p>');
+				}
+			}
+			
+			var FooterLinks = "";
+			
+			
+			if ( music["audioUrl"] != null ){
+				if (FooterLinks.length > 0)
+					FooterLinks += " | ";
+				FooterLinks += '<a href="' + music["audioUrl"] + '" target="_blank" rel="external" >Audio</a>';
+			}
+			
+			if ( music["videoUrl"] != null ){
+				if (FooterLinks.length > 0)
+					FooterLinks += " | ";
+				FooterLinks += '<a href="' + music["videoUrl"] + '" target="_blank" rel="external" >Vídeo</a>';
+			}
+			
+			if ( music["chordsUrl"] != null ){
+				if (FooterLinks.length > 0)
+					FooterLinks += " | ";
+				FooterLinks += '<a href="' + music["chordsUrl"] + '" target="_blank" rel="external" >Cífra</a>';
+			}
+			
+			if ( music["scoreUrl"] != null ){
+				if (FooterLinks.length > 0)
+					FooterLinks += " | ";
+				FooterLinks += '<a href="' + music["scoreUrl"] + '" target="_blank" rel="external" >Partitura</a>';
+			}
+			
+			$("#musica-content").append('<p>'+FooterLinks+'</p>');
+			
+			
+			$("#musica-content").append('<div style="text-align:center;"><a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-rel="back">Voltar</a></div>');
+			
+		}
+		
+		function setPage(page) {
+			
+			$("h2#page-title").text(page["title"]);
+			if (page["subtitle"]) {
+				$("h3#page-subtitle").text(page["subtitle"]);
+				$("h3#page-subtitle").show();
+			}
+			else
+				$("h3#page-subtitle").hide();
+			
+			for (var i=0 ; i< page["parts"].length ; i++) {
+				var part = page["parts"][i];
+				
+				if (part["__type"] == "paragraph") {
+					$("div#text").append('<p class="identar">'+part["txt"]+'</p>');
+				} else 
+				if (part["__type"] == "raw-paragraph") {
+					$("div#text").append(part["txt"]);
+				} else 
+				if (part["__type"] == "title") {
+					$("div#text").append('<h3>'+part["txt"]+'</h3>');
+				} else 
+				if (part["__type"] == "subtitle") {
+					$("div#text").append('<h4>'+part["txt"]+'</h4>');
+				} else 
+				if (part["__type"] == "highlight") {
+					$("div#text").append('<p class="destacar">'+part["txt"]+'</p>');
+				} else 
+				if (part["__type"] == "music-link") {
+					
+					part["__type"] = "'";
+					var jsonStr = encodeURI(JSON.stringify(part)).replace(/\'/g,"&apos;");
+					jsonStr = "\"" + jsonStr + "\"";
+					var entry = '<a href="#musica" onclick=\'setMusiclink('+jsonStr+');\' class="ui-btn ui-corner-all ui-shadow ui-btn-inline">'+part["txt"]+'</a>';
+					//console.log(entry);
+					$("div#text").append(entry);
+					
+				} else {
+					$("div#text").append('<h3>Not found: '+part["__type"]+'</h3>');
+				}
+			}
+		}
+		
+		$( document ).ready(function() {
+			
+			var hash = getParametersHash();
+			
+			if ("file" in hash) {
+				
+				file_to_load = hash["file"];
+				
+			}
+			
+			if ( 'external-music' in hash ) {
+				$.getJSON( hash['external-music'], function( data ) {
+					musicHash = data['hash'];
+					for(var i=0;i<data['musiclist'].length;i++) {
+						var music = data['musiclist'][i];
+						musicFile[music['file']] = music['music'];
+						console.log('adding file: '+music['file']);
+					}
+					$.getJSON( file_to_load, function( data ) {
+						//
+						for(var i=0;i<data['musiclist'].length;i++) {
+							var music = data['musiclist'][i];
+							musicFile[music['file']] = music['music'];
+							console.log('adding file: '+music['file']);
+						}
+						
+						var hash = getParametersHash();
+						if ('day' in hash)
+							setPage(data['pages'][hash['day']]);
+					});
+				});
+				//chain
+			} else {
+				$.getJSON( file_to_load, function( data ) {
+					//
+					for(var i=0;i<data['musiclist'].length;i++) {
+						var music = data['musiclist'][i];
+						musicFile[music['file']] = music['music'];
+						console.log('adding file: '+music['file']);
+					}
+					
+					var hash = getParametersHash();
+					if ('day' in hash)
+						setPage(data['pages'][hash['day']]);
+				});
+			}
+			
+			//music before show event...
+			$('#musica').on('pagebeforeshow',function(){
+				
+				if (window.musichlink == null) {
+					deviceBackPress();
+					return;
+				}
+				var hash = window.musichlink['hash'];
+				var file = window.musichlink['file'];
+				
+				console.log('looking for: '+hash);
+				if (hash in musicHash)
+					if ( musicHash[hash] in musicFile )
+						file = musicHash[hash];
+				
+				console.log('looking file: '+file);
+				
+				if (file in musicFile) {
+					var music = musicFile[file];
+					setMusic(music);
+					console.log('  file found!!!');
+				}
+				
+			});
+			
+		});
+		</script>
+	</head>
+	<body onload="loadEnd();" >
+		
+		
+		<div data-role="page" id="content" >
+			<div data-role="header"  class="fixtitle">
+				<a href='#' class='ui-btn-left' data-icon='arrow-l' onclick="deviceBackPress();" >Voltar</a>
+				<h1>Guia Digital</h1>
+			</div>
+			
+			
+			<div role="main" class="ui-content" style="max-width:600px;margin:0 auto 0 auto;" >
+				<div id="navbuttonstop" style="text-align:left;display:block;" ></div>
+				
+				<h2 id="page-title" style="padding-bottom:0em;margin-bottom:0.25em;"></h2>
+				<h3 id="page-subtitle" class="underline" style="color: #333333;font-weight: 400;padding-top:0em;margin-top:0em;displau:none;"></h3>
+				<div id="text" class="FontPTSerif" >
+				</div>
+				<div id="debug"></div>
+				
+				<div id="navbuttonsbottom" style="text-align:left;display:block;" ></div>
+			</div>
+			
+			
+		</div>
+		
+		<div data-role="page" id="musica" >
+			<div data-role="header"  class="fixtitle">
+				<a href='#' class='ui-btn-left' data-icon='arrow-l' onclick="deviceBackPress();" >Voltar</a>
+				<h1>Música</h1>
+			</div>
+			
+			<div id="musica-content" role="main" class="ui-content FontPTSerif" style="text-align:center;"></div>
+		</div>
+		
+	</body>
+</html>

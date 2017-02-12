@@ -1,0 +1,30 @@
+@echo off
+
+setlocal EnableDelayedExpansion
+chcp 65001 > null
+
+if "%ARQUIVO_DE_SAIDA%" == "" set ARQUIVO_DE_SAIDA=customizacao-musical.json
+
+if exist tools\json-music-processor.exe (
+	tools\json-music-processor.exe
+) else (
+	if exist "..\..\..\tools\json-music-processor.exe" (
+		..\..\..\tools\json-music-processor.exe
+	)
+)
+
+
+del musicas\*.json
+del null
+move output\external-music.json %ARQUIVO_DE_SAIDA%
+
+rmdir output /Q /S
+
+cls
+echo.
+echo Pronto
+echo.
+echo Arquivo gerado: '%ARQUIVO_DE_SAIDA%'
+echo.
+pause
+

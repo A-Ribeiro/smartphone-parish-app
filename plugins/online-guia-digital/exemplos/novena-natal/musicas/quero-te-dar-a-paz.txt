@@ -1,0 +1,46 @@
+﻿
+{musica-titulo:Quero te dar a paz, do meu Senhor}
+{musica-autor:Pe. José}
+
+//entrada, perdão, glória, aclamação, salmo, ofertório, santo, consagração, amém, cordeiro, comunhão, final
+{musica-categoria:}
+
+//advento, natal, comum, quaresma, semana-santa, páscoa
+{musica-tempo-liturgico:}
+
+{refrão:Quero te dar a paz
+do meu Senhor,
+com muito amor. (2x)}
+
+{verso:Na flor vejo manifestar
+o poder da criação,
+Nos teus lábios eu vejo estar
+um sorriso de um irmão.
+
+Toda vez que eu te abraço
+e aperto a tua mão
+Sinto forte o poder do amor
+dentro do teu coração}
+
+{refrão:Quero te dar a paz
+do meu Senhor,
+com muito amor. (2x)}
+
+{verso:Deus é Pai e nos protege,
+Cristo é o filho e Salvação,
+Santo Espírito Consolador,
+na Trindade somos irmãos
+
+Toda vez que eu te abraço
+e aperto a tua mão
+Sinto forte o poder do amor
+dentro do teu coração}
+
+{refrão:Quero te dar a paz
+do meu Senhor,
+com muito amor. (2x)}
+
+{musica-link-cifra:}
+{musica-link-partitura:}
+{musica-link-audio:}
+{musica-link-video:}

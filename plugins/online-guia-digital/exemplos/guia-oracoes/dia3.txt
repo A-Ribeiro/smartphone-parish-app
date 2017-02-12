@@ -1,0 +1,40 @@
+
+{pagina-indice:3}
+
+{pagina-titulo:Quarta feira}
+
+{pagina-subtitulo:Intenções de quarta feira}
+
+{titulo:Pai Nosso}
+
+Pai nosso que estais no céu,
+Santificado seja o Vosso nome,
+Venha a nós o Vosso reino,
+Seja feita a Vossa vontade,
+Assim na terra quanto no céu.
+<br />
+O pão nosso de cada dia nos dai hoje,
+perdoai as nossas ofensas,
+assim como nós perdoamos a quem nos tenha ofendido,
+e não nos deixeis cair em tentação,
+mas livrai-nos do mal,
+<br />
+Amém.
+
+{titulo:Ave-Maria}
+
+Ave Maria, cheia de graças! O Senhor é convosco!
+Bendita sois vóz entre as mulheres!
+Bendito é o fruto do vosso ventre Jesus!
+<br />
+Santa Maria Mãe de Deus!
+Rogai por nós pecadores!
+Agora e na hora de nossa morte!
+<br />
+Amem.
+
+
+{titulo:Oração:}
+
+...
+

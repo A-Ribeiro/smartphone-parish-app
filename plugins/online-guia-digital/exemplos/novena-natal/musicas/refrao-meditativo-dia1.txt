@@ -1,0 +1,21 @@
+﻿
+{musica-titulo:O Senhor vai falar-nos de paz}
+{musica-autor:Pe. José 2}
+
+//entrada, perdão, glória, aclamação, salmo, ofertório, santo, consagração, amém, cordeiro, comunhão, final
+{musica-categoria:}
+
+//advento, natal, comum, quaresma, semana-santa, páscoa
+{musica-tempo-liturgico:}
+
+{verso:O Senhor vai falar-nos de paz,
+a teu povo e a todos amigos,
+paz a quantos a Ele se achegam,
+e se alegre o teu povo contigo!
+Paz a quantos a Ele se achegam,
+e se alegre o teu povo contigo!}
+
+{musica-link-cifra:}
+{musica-link-partitura:}
+{musica-link-audio:}
+{musica-link-video:}

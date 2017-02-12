@@ -1,0 +1,129 @@
+
+{pagina-indice:1}
+
+{pagina-titulo:O Deus da paz, nossa segurança!}
+
+{pagina-subtitulo:1º encontro}
+
+{destaque:(Preparação do ambiente: em um lugar de destaque, colocar a bíblia aberta, com uma lamparina ou vela, e o encarte da Novena. O grupo pode se reunir junto ao presépio)}
+
+{titulo:1 - Chegada e acolhida}
+
+{destaque:(O grupo se reúne à porta da casa onde será o encontro, cantando o canto a seguir. Quando os donos da casa abrirem a porta, o grupo entra e dá continuidade ao encontro. Não sendo possível iniciar o encontro dessa forma, que o grupo se sinta livre para iniciá-lo conforme o seu costume.)}
+
+{file:[musicas/abra-a-porta.txt]Musica de entrada}
+
+{subtitulo:Dirigente:}
+
+É de paz a nossa vinda! Neste primeiro encontro de nossa Novena de Natal, vamos nos preparar para acolher o Rei da Paz, o Deus-Menino!
+
+{subtitulo:Alguém de casa:}
+
+Na alegria da espera pelo Deus que vem, sejam bem-vindas e bem-vindos, todos vocês que trazem paz!
+
+{destaque:(Todos se cumprimentam, desejando a paz. O grupo pode contar um canto de paz, conhecido por todos. Algumas sugestões, a partir da página 83.)}
+
+{file:[musicas/quero-te-dar-a-paz.txt]Musica de paz}
+
+{titulo:2 - Olhar a realidade}
+
+{subtitulo:Leitor(a) 1:}
+
+A questão da violência, sob todas as suas formas, é sempre uma preocupação social no mundo inteiro, por essa razão, precisamos buscar alternativas que contribuam para o cessar dessa violência, abrindo-nos caminhos de paz.
+
+No pensamento de muitos cidadãos, possuir uma arma em casa, por exemplo, pode ser uma solução para que a família se defenda contra atos de violência, conforme comprovam muitas estatísticas sobre esse assunto.
+
+Para combater a violência, não precisamos de mais armas, mas de investimentos em favor da educação, da oferta de cultura e de lazer, da promoção de mais oportunidades para que haja justiça social.
+
+Como cristãos e cristãs, nossa resposta às situações de violência não pode ser com mais violência, mas com ações que promovam a paz.
+
+Nesse advento, somos chamados a converter nosso coração ao Deus da Paz, que nos traz a salvação não pelo poder das armas, mas pela força do amor.
+
+Vamos conversar um pouco sobre isso.
+
+{destaque:(tempo para conversar)}
+
+{titulo:3 - Escutar o Senhor}
+
+{file:[musicas/refrao-meditativo-dia1.txt]Refrão meditativo}
+
+{destaque:(Uma pessoa lê na Bíblia: Isaías 2,1-5. Todos escutam. Depois de uns instantes de silêncio, cada pessoa lê esse texto em sua própria Bíblia)}
+
+{subtitulo:Leitor(a) 2:}
+
+A reflexão que Isaías nos propõe alenta a nossa esperança na vinda do Filho de Deus para junto de nossa humanidade.
+
+Os versículos que lemos narram uma visão do profeta, revelando a vocação do povo de Israel em ser sinal da comunhão com Deus a todas as nações.
+
+O texto é, ainda, um imperativo à paz: as armas, antes usadas para a guerra, devem se tornar instrumentos de serviço à vida, de modo que as espadas se tornem utensílios para arar a terra; as lanças, foices para a colheita.
+
+Para nós, hoje, esse imperativo ainda é forte, em um país tão marcado pela violência.
+
+Como discípulos e discípulas de Jesus, somos chamados a nos tornar promotores da paz, a partir do diálogo, do exercício do amor e do respeitor às diferenças.
+
+No lugar das armas, somos chamados a portar a bandeira do Evangelho, que é o grande anúncio de que Deus se faz um conosco, e é por isso que ele vem!
+
+<b>Vamos refletir:</b>
+
+Todos os dias, recebemos notícias a resprito dos atos de violência no mundo inteiro.
+Os noticiários têm nos colocado como vítimas e réus em ações de violência, quando incentivam o combate à violência com mais violência.
+
+Diante dessa constatação, precisamos refletir sobre como temos permitido a atuação das mídias em nossas vidas: temos nos comportado como massa de manobra dessas mídias, permitindo aumentar a violência ao nosso redor?
+
+Ou como agentes de transformação, assim como nos chama a atenção o Evangelho, colocando a nossa vida a serviço da paz?
+
+{titulo:4 - Rezar ao Senhor}
+
+{subtitulo:Dirigente:}
+
+Vamos rezar, com o salmista, manifestando nossa confiança no Senhor, o único a nos dar a verdadeira proteção:
+
+{subtitulo:Gr.1:}
+
+Só em Deus repousa a minha alma; dele vem minha salvação. Só ele é meu rochedo e minha salvação, minha rocha de defesa: jamais vou vacilar.
+
+{subtitulo:Gr.2:}
+
+Só em Deus repousa, ó minh'alma, pois dele vem minha esperança. Só ele é meu rochedo e minha salvação, minha rocha de defesa: jamais vou vacilar.
+
+{subtitulo:Gr.1:}
+
+Em Deus está minha salvação e minha glória, meu refúgio seguro, minha defesa está em Deus. Confia nele, ó povo, diante dele derrama teu coração, nosso refúgio é Deus.
+
+{subtitulo:Gr.2:}
+
+Não confieis na violência, não vos iludais com a repina; às riquezas, mesmo se abundantes, não apegueis o coração. Uma palavra Deus disse, duas eu ouvi: o poder pertence a Deus.
+
+<p><i>(SL 62 [61], 2-3.6-9.11-12)</i></p>
+
+{subtitulo:Todos:}
+
+Senhor, nosso Deus, a vinda de vosso Filho para junto de nós é promessa de um mundo de paz.
+
+Ajudai-nos a ser agentes dessa paz.
+
+Que, neste Advento, possamos nos empenhar no anúncio e na promoção da paz, certos de que nossa proteção e segurança está em vós.
+
+Por Cristo, nosso Senhor, amém!
+
+{subtitulo:Pai-Nosso}
+
+Pai Nosso, que estáis no céu. Santificado seja vosso nome. Venha a nós o vosso reino. Seja feita a vossa vontade assim na terra como no céu. O pão nosso de cada dia nos dai hoje. Perdoai as nossas ofenças, assim como nós perdoamos a quem nos tenha ofendido. E não nos deixeis cair em tentação mais livrai-nos do mal. Amém.
+
+{subtitulo:Ave Maria}
+
+Ave Maria cheia de graças, o Senhor é convosco. Bendita sois vós entre as mulheres, bendito é o fruto do vosso ventre Jesus. Santa Maria Mãe de Deus, rogai por nós pecadores, agora e na hora de nossa morte. Amém.
+
+{titulo:5 - Bênção e despedida}
+
+{file:[musicas/quando-o-dia-da-paz-renascer.txt]Musica final}
+
+{subtitulo:Dirigente:}
+
+O Deus da Paz, fonte da verdadeira segurança, abençoe-nos hoje e sempre!
+
+{subtitulo:Todos:}
+
+Amém. Vende, Senhor Jesus!
+
+{destaque:(Ao fim do encontro, o grupo pode propor um gesto concreto de paz. O encontro termina com um canto. Sugestões a partir da página 83.)}
