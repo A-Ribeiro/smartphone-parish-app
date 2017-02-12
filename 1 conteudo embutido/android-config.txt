@@ -1,0 +1,14 @@
+Aplicativo Smartphone
+com.paroquia.aplicativo
+1
+1
+
+#########
+# As primeiras linhas desse arquivo
+# são as configurações para o aplicativo
+#########
+# Linha 1: nome que aparecerá no android embaixo do icone do aplicativo
+# Linha 2: identificador do pacote para o android na Play Store
+# Linha 3: código da versão (número que deve ser incrementado a cada atualização)
+# Linha 4: código do nome da versão (versão que será visível para o usuário ex.: 001)
+#########

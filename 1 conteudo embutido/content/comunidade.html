@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Paróquia App</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<link rel="stylesheet" href="../builtin/js/orangetheme.min.css" />
+	<!--link rel="stylesheet" href="../builtin/js/jquery.mobile.theme-1.4.5.min.css" /-->
+	
+	<link rel="stylesheet" href="../builtin/js/jquery.mobile.icons-1.4.5.min.css" />
+	<link rel="stylesheet" href="../builtin/js/jquery.mobile.structure-1.4.5.min.css" />
+	
+	<script src="../builtin/js/jquery.min.js"></script>
+	<script>
+		// device events
+		function deviceBackPress() {
+			alert("android.forwardBackPress");
+		}
+		
+		$(document).bind("mobileinit", function(){
+			$.extend(  $.mobile , {
+				ajaxEnabled: false
+			});
+		});
+	</script>
+	<script src="../builtin/js/jquery.mobile-1.4.5.min.js"></script>
+	<script>
+		function localParam() {
+			var paramList = window.location.href.split("#");
+			if (paramList.length == 2)
+				return paramList[1];
+			else
+				return null;
+		}
+		
+		function openAndScroll(id){
+			$(id).collapsible({collapsed: false});
+			
+		}
+		
+		function closeItem(id) {
+			$(id).collapsible({collapsed: true});
+			$('html,body').animate({scrollTop: 0});
+			
+			history.replaceState({}, null, "comunidade.html" );
+			
+		}
+		
+		$(document).ready(function () {
+			var param = localParam();
+			if ( param != null ) {
+				param = "#".concat(param);
+				//check if element exists
+				if ($(param).length > 0) {
+					$(param).collapsible({collapsed: false});
+					$('html,body').animate({scrollTop: $(param).offset().top});
+				}
+			}
+			
+			$( ".expandevt" ).on( "collapsibleexpand", function( event, ui ) {
+				history.replaceState({}, null, "comunidade.html#".concat( $(this).attr('id') ) );
+				$('html,body').animate({scrollTop: $(this).offset().top});
+			} );
+			
+			$( ".expandevt" ).on( "collapsiblecollapse", function( event, ui ) {
+				history.replaceState({}, null, "comunidade.html" );
+			} );
+			
+		});
+		
+	</script>
+
+</head>
+<body>
+
+<!-- Start of second page -->
+<div data-role="page" id="comunidade">
+
+	<div data-role="header" >
+		<div data-role="navbar" >
+			<ul>
+				<li><a href="#" onclick="$.mobile.changePage($(document.location.href='noticia.html'));"    rel="external" >
+					<img src="../builtin/png/newspaper.png" alt="noticia" /><br />
+					Notícias<br />&nbsp;</a>
+				</li>
+				<li><a href="#" onclick="$.mobile.changePage($(document.location.href='paroquia.html'));"   rel="external" >
+					<img src="../builtin/png/home3.png" alt="paroquia" /><br />
+					A Paróquia<br />&nbsp;</a>
+				</li>
+				<li><a href="#" onclick="$.mobile.changePage($(document.location.href='comunidade.html'));" rel="external" class="ui-btn-active ui-state-persist" >
+					<img src="../builtin/png/office.png" alt="comunidade" /><br />
+					Atividades da<br />Comunidade</a>
+				</li>
+				<li><a href="#" onclick="$.mobile.changePage($(document.location.href='oracao.html'));"     rel="external" >
+					<img src="../builtin/png/pencil.png" alt="oracao" /><br />
+					Pedido de<br />Oração</a>
+				</li>
+				<li></li><li></li>
+			</ul>
+		</div>
+		<h1 style="margin:0 0 0 0;" >Atividades da Comunidade</h1>
+	</div>
+	
+	<div role="main" class="ui-content">
+		<div class="ui-body ui-body-a ui-corner-all">		
+			<h3>Primeira instalação do APP</h3>
+			<p>O App contém informações sobre as atividades que acontecem na comunidade.</p>
+			<p>Você deve fechar e abrir esse App conectado a internet para que o mesmo seja atualizado corretamente.</p>
+			<p>A Paz de Jesus e o Amor de Maria !!!</p>
+		</div>
+		
+	</div>
+</div>
+
+
+</body>
+</html>
+

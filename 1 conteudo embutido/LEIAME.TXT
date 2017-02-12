@@ -1,0 +1,106 @@
+############################################################
+# Pacote de criação de aplicativo com atualização dinâmica #
+############################################################
+#                                                          #
+# Conteúdo embutido                                        #
+#                                                          #
+############################################################
+
+O aplicativo possui duas fontes de dados ou informações.
+
+A primeira é o conteúdo embutido, ou seja, o conteúdo que 
+estará disponível para o usuário sem a necessidade de 
+acessar um site ou endereço de internet.
+
+A segunda é o conteúdo online ou conteúdo dinâmico, ou seja,
+aquele conteúdo que precisa da conexão da internet para 
+funcionar.
+
+Toda a parte visual do aplicativo utiliza o framework 
+JQuery Mobile e html.
+
+Existem duas pastas:
+
+******************
+* PASTA: builtin *
+******************
+
+Contém o conteúdo estático, que não sofre alteração e se
+mantem o mesmo independente das atualizações que forem 
+ocorrer no aplicativo futuramente.
+
+Esse conteúdo pode sofrer manutenção de acordo com as
+atualizações de software ou atualizações no google play.
+
+******************
+* PASTA: content *
+******************
+
+Contém um espelho do conteúdo online. A página inicial
+que será aberta pelo sistema do android é o arquivo
+content/noticia.html
+
+Caso o aplicativo não estiver na internet, assim que o mesmo
+for instalado no smartphone, mostrará para o usuário o 
+conteúdo dessas páginas.
+
+É o conteúdo que o usuário irá ver até a primeira atualização
+online que ocorrer.
+
+********************************
+* Gerar pacote de distribuição *
+********************************
+
+Para gerar um novo pacote basta executar o arquivo
+gerar-pacote-embutido.bat
+
+Que o mesmo irá comprimir as pastas builtin e content
+e já coloca-los na pasta do aplicativo.
+
+Obs.: É necessário gerar um novo pacote embutido somente
+se for atualizado o conteúdo da pasta builtin, adicionando
+novos arquivos de plugins, dados ou imagens.
+
+**************************
+* Obs.: Layout das telas *
+**************************
+
+O layout do aplicativo foi pensado para conter as seguintes
+informações e disposição:
+
++---------------+---------------+
+|               |               |
+|               |               |
+|   Notícias    |  A Paróquia   |
+|               |               |
++---------------+---------------+
+|               |               |
+| Atividades da |  Pedido de    |
+|  Comunidade   |    Oração     |
+|               |               |
++---------------+---------------+
+
+
+*Notícias:
+ - Noticias sobre as datas festivas da comunidade
+ - Principais dias de festas do ano
+ - Mensagem das pastorais
+ - Pedidos de ajuda pelos grupos da igreja
+
+*A Paróquia:
+ - historia santo, 
+ - localizacao da paróquia, 
+ - link geolocalizado,
+ - horario de missa
+ - textos reflexivos
+ - informações que geralmente não mudam da paróquia
+
+*Atividades da Comunidade:
+ - informações de grupos e projetos
+ - horários e locais de reuniões
+ - horários das atividades
+  *Colocar o convite para as pessoas para participar de
+   algum grupo
+
+*Pedido de Oração:
+ - local para postar pedidos de oração
