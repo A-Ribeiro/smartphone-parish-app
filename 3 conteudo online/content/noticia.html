@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Paróquia App</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../builtin/js/orangetheme.min.css" />
+	<link rel="stylesheet" href="js/theme.min.css" />
+	<link rel="stylesheet" href="../builtin/js/jquery.mobile.icons-1.4.5.min.css" />
+	<link rel="stylesheet" href="../builtin/js/jquery.mobile.structure-1.4.5.min.css" />
+	
+	<script src="js/builtinVersion.js"></script>
+	<script src="../builtin/js/jquery.min.js"></script>
+	
+	<!-- class="FontPTSerif" -->
+	<link rel="stylesheet" href="../builtin/js/customfont.css" />
+	<script>
+	
+		var news={"news-list":[]};
+		function deviceBackPress() {
+			if (document.location.href.indexOf("#") == -1)
+				alert("android.forwardBackPress");
+			else
+				window.history.back();
+		}
+		
+		$(document).bind("mobileinit", function(){
+			$.mobile.useFastClick = true;
+		});
+		
+		
+		$(document).ready(function () {
+		
+		
+			$("#link-playstore").attr('href',GooglePlayURL);
+			//load news
+			
+			$.getJSON( 'news.json', function( data ) {
+				news = data;
+				
+				//menu render
+				$("#plugin-list").empty();
+				for(var i=0;i<news["news-list"].length;i++) {
+					var entry = news["news-list"][i];
+					$("#plugin-list").append( '<li><a href="#" onclick=" sessionStorage.index =  \'' + String(i) + '\';  $.mobile.changePage( \'#noticia-detalhe\' );" ><h2 style="white-space:normal;">'+entry["news-title"]+'</h2><p style="white-space:normal;">'+entry["news-description"]+'</p></a></li>' );
+				}
+				
+				$.getJSON( 'plugins.json', function( data ) {
+					var title = "";
+					
+					//$("#plugin-list").empty();
+					for(var i=0;i<data["list"].length;i++) {
+						var entry = data["list"][i];
+						
+						if (title != entry["category"]) {
+							$("#plugin-list").append('<li data-role="list-divider">'+entry["category"]+'</li>');
+							title = entry["category"];
+						}
+						
+						$("#plugin-list").append( entry['entry'] );
+						
+					}
+					if (data["list"].length > 0)
+						$("#plugin-list").append('<li data-role="list-divider">&nbsp;</li>');
+					
+					$("#plugin-list").listview();
+					$("#plugin-list").listview('refresh',true);
+					
+				} );
+				
+				
+				
+			});
+			
+			
+			$('#noticia-detalhe').on('pagebeforeshow',function(){
+				
+				var index = parseInt( sessionStorage.index  );
+				
+				var entry = news["news-list"][index];
+				
+				$("#page-title").empty();
+				$("#page-title").append(entry['page-title']);
+				
+				$("#news-title").empty();
+				$("#news-title").append(entry['news-title']);
+				
+				$("#news-text").empty();
+				
+				var text = entry['news-text'];
+				text = text.replace(/\r/g,'');
+				text = text.replace(/\n/g,'</p><p>');
+				text = '<p>'+text+'</p>';
+				
+				$("#news-text").append( text );
+				
+			});
+			
+		});
+		
+	</script>
+	<script src="../builtin/js/jquery.mobile-1.4.5.min.js"></script>
+	
+	<style>
+	
+	.fixtitle h1 {
+		margin: 0.0em 0.7em 0.0em 5.7em !important;
+	}
+	
+	.spanparent {
+		margin-left:-0.5em;
+		white-space:nowrap;
+	}
+	
+	.spanparent img{
+		height:80px;
+		float:left;
+		display: inline-block;
+	}
+	
+	.spanparent h3{
+		white-space:normal;
+		display: inline-block;
+		margin-right:5em;
+		margin-left:0.5em;
+	}
+	
+	.spanparent h3 span{
+		font-weight:normal;
+		font-size:10pt;
+		display:block;
+	}
+	.spanend{
+		clear:both;
+	}
+	</style>
+</head>
+<body>
+
+<div data-role="page" id="noticia" >
+
+	<div id="atualizar" style="display:none;">
+		<div data-role="header"   > <!-- data-position="fixed" -->
+			<h1 style="margin: 0.0em 0.7em 0.0em 0.7em !important;" >Aplicativo Desatualizado</h1>
+		</div><!-- /header -->
+		<div role="main" class="ui-content" >
+			<div class="ui-corner-all custom-corners">
+				<div class="ui-body ui-body-a">
+					<p>A versão do aplicativo em seu dispositivo está desatualizada e não irá suportar os novos recursos.</p>
+					<p>Para atualizar clique em atualizar na <a id="link-playstore" href="#">PlayStore</a>.</p>
+					<p>Se não for possível atualizar o aplicativo, você deve desinstalar e instalar o mesmo.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="paginainicial" >
+	<div data-role="header" > <!-- data-position="fixed" -->
+		<div data-role="navbar" >
+			<ul>
+				<li><a href="#" onclick="$.mobile.changePage($(document.location.href='noticia.html'));"    rel="external" class="ui-btn-active ui-state-persist" >
+					<img src="../builtin/png/newspaper.png" alt="noticia" /><br />
+					Notícias<br />&nbsp;</a>
+				</li>
+				<li><a href="#" onclick="$.mobile.changePage($(document.location.href='paroquia.html'));"  >
+					<img src="../builtin/png/home3.png" alt="paroquia" /><br />
+					A Paróquia<br />&nbsp;</a>
+				</li>
+				<li><a href="#" onclick="$.mobile.changePage($(document.location.href='comunidade.html'));" >
+					<img src="../builtin/png/office.png" alt="comunidade" /><br />
+					Atividades da<br />Comunidade</a>
+				</li>
+				<li><a href="#" onclick="$.mobile.changePage($(document.location.href='oracao.html'));"  >
+					<img src="../builtin/png/pencil.png" alt="oracao" /><br />
+					Pedido de<br />Oração</a>
+				</li>
+				<li></li><li></li>
+			</ul>
+		</div><!-- /navbar -->
+		<h1 style="margin:0 0 0 0;" >Notícias</h1>
+	</div><!-- /header -->
+
+	<div role="main" class="ui-content" >
+	
+	<ul data-role="listview" data-inset="false" data-divider-theme="a" id="noticias-list" >
+	</ul>
+	
+	<ul data-role="listview" data-inset="false" data-divider-theme="a" id="plugin-list" >
+	<!-- Espaço para Plugins INICIO -->
+	<!-- Espaço para Plugins FIM -->
+	</ul>
+	
+	
+	
+	</div>
+	
+	</div>
+	
+	<script>
+		$.ajax({
+			async: false,
+			url:"../"+builtinVersion, // URL TO CHECK EXISTANCE IN BUILTIN PACKAGE
+			type:'HEAD',
+			error: function()
+			{
+				//document.getElementById('paginainicial').style.display = 'none';
+				document.getElementById('atualizar').style.display = 'block';
+				document.getElementById('paginainicial').style.display = 'none';
+				//document.location.href='noticia.html#atualizar';
+			},
+			success: function()
+			{
+			}
+		});
+		
+	</script>
+</div><!-- /page -->
+
+<div data-role="page" id="noticia-detalhe" >
+	<div data-role="header"  class="fixtitle" >
+		<a href='#' class='ui-btn-left' data-icon='arrow-l' onclick="history.back(); return false">Voltar</a>
+		<h1 id="page-title">Reunião do Conselho</h1>
+	</div>
+	<div role="main" class="ui-content" >
+		<div class="ui-corner-all custom-corners">
+			<div class="ui-bar ui-bar-a">
+				<h3 id="news-title" >Conselho Pastoral Comunitário</h3>
+			</div>
+			<div class="ui-body ui-body-a FontPTSerif" id="news-text" >
+				<p>Amanhã, dia 05 de Novembro de 2016, acontecerá a Reunião do Conselho Pastoral Comunitário do bairro Minas Caixa.</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+</div>
+
+
+</body>
+</html>
+

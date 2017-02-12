@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Paróquia App</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../builtin/js/orangetheme.min.css" />
+	<link rel="stylesheet" href="js/theme.min.css" />
+	<link rel="stylesheet" href="../builtin/js/jquery.mobile.icons-1.4.5.min.css" />
+	<link rel="stylesheet" href="../builtin/js/jquery.mobile.structure-1.4.5.min.css" />
+	
+	<script src="js/builtinVersion.js"></script>
+	<script src="../builtin/js/jquery.min.js"></script>
+	
+	<!-- class="FontPTSerif" -->
+	<link rel="stylesheet" href="../builtin/js/customfont.css" />
+	<script>
+	
+		var group={"group-list":[]};
+		function deviceBackPress() {
+			if (document.location.href.indexOf("#") == -1)
+				alert("android.forwardBackPress");
+			else
+				window.history.back();
+		}
+		
+		$(document).bind("mobileinit", function(){
+			$.mobile.useFastClick = true;
+		});
+		
+		
+		$(document).ready(function () {
+		
+		
+			//load news
+			
+			$.getJSON( 'group.json', function( data ) {
+				group = data;
+				
+				
+				//menu render
+				
+				var title = "";
+				
+				$("#grupo-list").empty();
+				for(var i=0;i<group["group-list"].length;i++) {
+					var entry = group["group-list"][i];
+					
+					if (title != entry["parish"]) {
+						$("#grupo-list").append('<li data-role="list-divider"><h1>'+entry["parish"]+'</h1></li>');
+						title = entry["parish"];
+					}
+					
+					$("#grupo-list").append( '<li><a href="#" onclick=" sessionStorage.index =  \'' + String(i) + '\';  $.mobile.changePage( \'#grupo-detalhe\' );" ><h2 style="white-space:normal;">'+entry["name"]+'</h2></a></li>' );
+				}
+				
+				$("#grupo-list").append('<li data-role="list-divider"><h1>&nbsp;</h1></li>');
+				
+				$("#grupo-list").listview();
+				$("#grupo-list").listview('refresh',true);
+				
+				
+				
+			});
+			
+			
+			$('#grupo-detalhe').on('pagebeforeshow',function(){
+				
+				var index = parseInt( sessionStorage.index  );
+				
+				var entry = group["group-list"][index];
+				
+				$("#page-title").empty();
+				$("#page-title").append('Grupo');
+				
+				$("#group-title").empty();
+				$("#group-title").append(entry['name']);
+				
+				$("#group-text").empty();
+				
+				var text = entry['text'];
+				text = text.replace(/\r/g,'');
+				text = text.replace(/\n/g,'</p><p>');
+				text = '<p>'+text+'</p>';
+				
+				$("#group-text").append( text );
+				
+				
+			});
+			
+		});
+		
+	</script>
+	<script src="../builtin/js/jquery.mobile-1.4.5.min.js"></script>
+	
+	<style>
+	
+	
+	.underline:after {
+			content: '';
+			display: block;
+			/*position: absolute;*/
+			height: 4px;
+			width: 40px;
+			bottom: 0;
+			left: 0;
+			background-color: #275683;
+			box-sizing: border-box;
+			
+			margin-top:0.5em;
+			margin-bottom:1.0em;
+			
+		}
+
+		
+	.fixtitle h1 {
+		margin: 0.0em 0.7em 0.0em 5.7em !important;
+	}
+	
+	.spanparent {
+		margin-left:-0.5em;
+		white-space:nowrap;
+	}
+	
+	.spanparent img{
+		height:80px;
+		float:left;
+		display: inline-block;
+	}
+	
+	.spanparent h3{
+		white-space:normal;
+		display: inline-block;
+		margin-right:5em;
+		margin-left:0.5em;
+	}
+	
+	.spanparent h3 span{
+		font-weight:normal;
+		font-size:10pt;
+		display:block;
+	}
+	.spanend{
+		clear:both;
+	}
+	</style>
+</head>
+<body>
+
+<div data-role="page" id="grupo" >
+
+	<div id="atualizar" style="display:none;">
+		<div data-role="header"   > <!-- data-position="fixed" -->
+			<h1 style="margin: 0.0em 0.7em 0.0em 0.7em !important;" >Aplicativo Desatualizado</h1>
+		</div><!-- /header -->
+		<div role="main" class="ui-content" >
+			<div class="ui-corner-all custom-corners">
+				<div class="ui-body ui-body-a">
+					<p>A versão do aplicativo em seu dispositivo está desatualizada e não irá suportar os novos recursos.</p>
+					<p>Para atualizar clique em atualizar na <a href="https://play.google.com/store/apps/details?id=paroquia.sebastiaoedwiges.app">PlayStore</a>.</p>
+					<p>Se não for possível atualizar o aplicativo, você deve desinstalar e instalar o mesmo.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="paginainicial" >
+	<div data-role="header" > <!-- data-position="fixed" -->
+		<div data-role="navbar" >
+			<ul>
+				<li><a href="#" onclick="$.mobile.changePage($(document.location.href='noticia.html'));"   >
+					<img src="../builtin/png/newspaper.png" alt="noticia" /><br />
+					Notícias<br />&nbsp;</a>
+				</li>
+				<li><a href="#" onclick="$.mobile.changePage($(document.location.href='paroquia.html'));"  >
+					<img src="../builtin/png/home3.png" alt="paroquia" /><br />
+					A Paróquia<br />&nbsp;</a>
+				</li>
+				<li><a href="#" onclick="$.mobile.changePage($(document.location.href='comunidade.html'));"    rel="external" class="ui-btn-active ui-state-persist" >
+					<img src="../builtin/png/office.png" alt="comunidade" /><br />
+					Atividades da<br />Comunidade</a>
+				</li>
+				<li><a href="#" onclick="$.mobile.changePage($(document.location.href='oracao.html'));"  >
+					<img src="../builtin/png/pencil.png" alt="oracao" /><br />
+					Pedido de<br />Oração</a>
+				</li>
+				<li></li><li></li>
+			</ul>
+		</div><!-- /navbar -->
+		<h1 style="margin:0 0 0 0;" >Atividades da comunidade</h1>
+	</div><!-- /header -->
+
+	<div role="main" class="ui-content" >
+	
+	<ul data-role="listview" data-inset="false" data-divider-theme="a" >
+	<!-- Espaço para Plugins INICIO -->
+		
+		
+		
+	<!-- Espaço para Plugins FIM -->
+	</ul>
+	
+	<ul data-role="listview" data-inset="false" data-divider-theme="a" id="grupo-list" >
+	</ul>
+	
+	</div>
+	
+	</div>
+	
+</div><!-- /page -->
+
+<div data-role="page" id="grupo-detalhe" >
+	<div data-role="header"  class="fixtitle" >
+		<a href='#' class='ui-btn-left' data-icon='arrow-l' onclick="history.back(); return false">Voltar</a>
+		<h1 id="page-title">Reunião do Conselho</h1>
+	</div>
+	<div role="main" class="ui-content" >
+		<div class="ui-corner-all custom-corners">
+			<p id="group-title" class="FontPTSerif underline" style="color: #333333;font-weight: 400;font-size:120%;padding-top:0em;margin-top:0em">Test</p>
+			
+			<div class="FontPTSerif" id="group-text"  >
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+</div>
+
+
+</body>
+</html>
+
