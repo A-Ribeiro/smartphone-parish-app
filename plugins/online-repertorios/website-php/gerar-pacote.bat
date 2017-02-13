@@ -194,7 +194,7 @@ echo.
 echo O site esta na pasta upload\
 echo.
 echo Para ativar o plugin e' necessario fazer upload dos arquivos 
-echo index.php e site.zip por um programa de FTP para a pasta do site.
+echo instalar.php e site.zip por um programa de FTP para a pasta do site.
 echo.
 echo Quando acessar o site pela primeira vez, todo o conteudo sera 
 echo descomprimido e o sistema estara pronto para ser utilizado.
