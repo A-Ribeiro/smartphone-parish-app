@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt">
+	<head>
+		<link rel="icon" type="image/png" sizes="192x192"  href="android-icon-192x192.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+		
+		<title></title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="js/orangetheme.min.css" />
+		<link rel="stylesheet" href="js/jquery.mobile.icons-1.4.5.min.css" />
+		<link rel="stylesheet" href="js/jquery.mobile.structure-1.4.5.min.css" />
+		<script src="js/jquery.min.js"></script>
+		<script src="js/jquery.mobile-1.4.5.min.js"></script>
+		<link rel="stylesheet" href="js/customfont.css" />
+		<script src="rest.js"></script>
+		
+		<style>
+		
+		.fixtitle h1 {
+			margin: 0.0em 0.7em 0.0em 0.7em !important;
+		}
+		
+		
+		</style>
+
+		<script>
+		
+		//var canGoBack = false;
+		
+		// device events
+		function deviceBackPress() {
+			window.history.back();
+		}
+
+		$(document).bind("mobileinit", function(){
+			$.extend(  $.mobile , {
+				ajaxEnabled: false
+			});
+		});
+		
+		function randomInt(min, max) {
+			return parseInt(Math.floor(Math.random() * (max - min + 1)) + min);
+		}
+		
+		
+		function loadEnd() {
+		}
+		
+		function getParametersHash() {
+			var searchString = window.location.search.substring(1),
+				params = searchString.split("&"),
+				hash = {};
+			if (searchString == "") return {};
+			for (var i = 0; i < params.length; i++) {
+				var val = params[i].split("=");
+				hash[unescape(decodeURIComponent(val[0]))] = unescape(decodeURIComponent(val[1])).split('+').join(' ');
+			}
+			return hash;
+		}
+		
+		
+		function backup() {
+			$('#options').panel('close');
+			dumpfile_window_location_download_file();
+		}
+		
+		function handleFileRestore (files) {
+			var file = files[0];
+			var reader = new FileReader();
+			// Handle errors load
+			reader.onload = function(event){
+				var data = event.target.result;
+				
+				//testServerCompression({
+				
+				dumpfile_restore({
+					json:data,
+					onSuccess: function(data,status){
+						console.log( JSON.stringify(data) );
+					},
+					onFail: function(data,status){},
+				});
+				
+				$('#options').panel('close');
+				$("#upfile").val('');
+			};
+			// Read file into memory as UTF-8
+			reader.readAsText(file);
+		}
+
+		
+		
+		</script>
+	</head>
+
+	<body onload="loadEnd();" >
+		<div data-role="page" id="mainmenu" >
+		
+		
+			<div data-role="header"  class="fixtitle" >
+				<h1>Informações</h1>
+			</div>
+			
+			<ul data-role="listview" data-inset="false" data-divider-theme="a" >
+				
+				<li>
+				<div>
+					<h3><big>Política de privacidade</big></h3>
+					<p style="white-space:normal;text-align: justify;text-justify: inter-word;" >A plataforma online de música e repertório é responsável somente pela tecnologia de armazenamento, processamento e visualização de dados.</p>
+					<h3>Usuários</h3>
+					<p style="white-space:normal;text-align: justify;text-justify: inter-word;" >É considerado um usuário do sistema qualquer pessoa que acesse o mesmo somente em modo de leitura dos dados.</p>
+					<p style="white-space:normal;text-align: justify;text-justify: inter-word;" >Um usuário pode: visualizar músicas, visualizar repertórios e exportar um conjunto de repertórios para integração externa.</p>
+					<h3>Usuários com permissão de gravação</h3>
+					<p style="white-space:normal;text-align: justify;text-justify: inter-word;" >Para ser um usuário com permissão de gravação, é necessário utilizar a conta do google e entrar em contato com o webmaster para cadastrar o seu email no sistema.</p>
+					<p style="white-space:normal;text-align: justify;text-justify: inter-word;" >Quando um usuário possuir a permissão de gravação no sistema, o mesmo é capaz de editar/criar músicas ou repertórios.</p>
+					<p style="white-space:normal;text-align: justify;text-justify: inter-word;" >São armazenados juntamente aos dados do sistema o nome e email do responsável pela última alteração da música ou repertório.</p>
+					<h3>Usuários com permissão de backup/restauração de dados</h3>
+					<p style="white-space:normal;text-align: justify;text-justify: inter-word;" >Para ser um usuário com permissão de backup/restauração de dados, é necessário utilizar a conta do google e entrar em contato com o webmaster para cadastrar o seu email no sistema.</p>
+					<p style="white-space:normal;text-align: justify;text-justify: inter-word;" >Um usuário pode ter permissão de fazer backup e restauração do banco de dados do sistema.</p>
+					<p style="white-space:normal;text-align: justify;text-justify: inter-word;" >Esse usuário tem acesso ao arquivo de backup(através da ferramenta). Esse arquivo contém todas as contribuições (músicas ou repertórios) associadas ao nome e email dos <b>Usuários com permissão de gravação</b> que criaram esse conteúdo.</p>
+					<h3>Exportação de arquivos .PDF</h3>
+					<p style="white-space:normal;text-align: justify;text-justify: inter-word;" >Para utilizar a função de exportação de arquivos com extensão <i>.PDF</i>, o usuário deve utilizar sua conta do google.</p>
+					<p style="white-space:normal;text-align: justify;text-justify: inter-word;" >Nessa situação, nenhum dado do usuário é armazenado no sistema.</p>
+					<p style="white-space:normal;text-align: justify;text-justify: inter-word;" >A informação de <b>nome do usuário</b> será utilizada para preencher o campo de autor da geração automática do arquivo com extensão <i>.PDF</i> .</p>
+				</div>
+				</li>
+				<li data-role="list-divider">&nbsp;</li>
+			</ul>
+			
+		</div>
+		
+	</body>
+</html>

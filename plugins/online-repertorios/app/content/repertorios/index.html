@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="pt">
+	<head>
+		<title></title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="../../builtin/js/orangetheme.min.css" />
+		<link rel="stylesheet" href="../../content/js/theme.min.css" />
+		<link rel="stylesheet" href="../../builtin/js/jquery.mobile.icons-1.4.5.min.css" />
+		<link rel="stylesheet" href="../../builtin/js/jquery.mobile.structure-1.4.5.min.css" />
+		<script src="../../builtin/js/jquery.min.js"></script>
+		<script src="../../builtin/js/jquery.mobile-1.4.5.min.js"></script>
+		<link rel="stylesheet" href="../../builtin/js/customfont.css" />
+		
+		<script src="visualizar.js"></script>
+		<link rel="stylesheet" href="visualizar.css" />
+		
+		<style>
+		
+		.fixtitle h1 {
+			margin: 0.0em 0.7em 0.0em 5.7em !important;
+		}
+		
+		.fixtitle2 h1 {
+			margin: 0.0em 5.7em 0.0em 5.7em !important;
+		}
+		
+		.flipclass .ui-slider-switch.ui-mini { 
+			width: 6.5em;
+			
+		}
+		
+		.flipclass .ui-slider-switch.ui-mini .ui-slider-label
+		{
+			/*
+			font-size:95%;
+			*/
+			font-weight:normal;
+		}
+		
+		</style>
+
+		<script>
+		// device events
+		
+		if (!localStorage.musico)
+			localStorage.musico = 'on';
+		
+		function deviceBackPress() {
+			window.history.back();
+		}
+
+		$(document).bind("mobileinit", function(){
+			$.extend(  $.mobile , {
+				ajaxEnabled: false
+			});
+		});
+		
+		function randomInt(min, max) {
+			return parseInt(Math.floor(Math.random() * (max - min + 1)) + min);
+		}
+		
+		function loadEnd() {
+		}
+		
+		function getParametersHash() {
+			var searchString = window.location.search.substring(1),
+				params = searchString.split("&"),
+				hash = {};
+			if (searchString == "") return {};
+			for (var i = 0; i < params.length; i++) {
+				var val = params[i].split("=");
+				hash[unescape(decodeURIComponent(val[0]))] = unescape(decodeURIComponent(val[1])).split('+').join(' ');
+			}
+			return hash;
+		}
+		
+		function htmlEncode( html ) {
+			return document.createElement( 'a' ).appendChild( 
+				document.createTextNode( html ) ).parentNode.innerHTML;
+		}
+
+		function htmlDecode( html ) {
+			var a = document.createElement( 'a' ); a.innerHTML = html;
+			return a.textContent;
+		}
+
+		function viewscript(index) {
+			console.log('view script '+String(index));
+			sessionStorage.scriptindex = String(index);
+			
+			$.mobile.changePage( "#script-list-page" );
+			
+		}
+		
+		function viewmusic(index) {
+			console.log('view music '+String(index));
+			sessionStorage.musicindex = String(index);
+			//$.mobile.changePage( "#music-page" );
+			
+			if (localStorage.musico == 'on')
+				$.mobile.changePage( "#visao-musico" );
+			else
+				$.mobile.changePage( "#visao-cantor" );
+			
+		}
+		
+		function viewallmusic() {
+			console.log('view all music ');
+			
+			sessionStorage.musicindex = "-1";
+			
+			if (localStorage.musico == 'on')
+				$.mobile.changePage( "#visao-musico" );
+			else
+				$.mobile.changePage( "#visao-cantor" );
+			
+		}
+		
+		
+		function renderScriptsMainMenu() {
+			
+			var data = JSON.parse( sessionStorage.scripts );
+			
+			$('#script-list').empty();
+					
+			for(var i=0;i<data.length;i++){
+				var script = data[i];
+				$('#script-list').append('<li><a href="#" onclick="viewscript('+i+');"><h1 style="white-space:normal;padding-left:0.5em;text-indent:-0.5em;" >'+ String(i+1)+" " +htmlEncode(script['name'])+'</h1></a></li>');
+			}
+			
+			//$('#script-list').append('<li><div><h3 style="white-space:normal;text-align: justify;text-justify: inter-word;" >Política de privacidade</h3>'+
+			//'<p style="white-space:normal;text-align: justify;text-justify: inter-word;" >A plataforma offline de música e repertório é responsável somente pela tecnologia de processamento e visualização de dados.</p></div></li>');
+			
+			$('#script-list').listview();
+			$('#script-list').listview('refresh', true);
+			
+		}
+		
+		window.onbeforeunload = function(e) {
+		
+			if (String(window.location).indexOf("#") != -1)
+				return;
+		
+			console.log('releasing cache...');
+			if (sessionStorage.scripts)
+				delete sessionStorage.scripts;
+			if (sessionStorage.scriptindex)
+				delete sessionStorage.scriptindex;
+			if (sessionStorage.musicindex)
+				delete sessionStorage.musicindex;
+			//if (sessionStorage.musico)
+				//delete sessionStorage.musico;
+		}
+		
+		$( document ).ready(function() {
+			
+			if (sessionStorage.scripts) {
+				console.log('load from session...');
+				renderScriptsMainMenu();
+			} else {
+				console.log('load from file...');
+				$.getJSON( 'lista_repertorios.json', function( data ) {
+					sessionStorage.scripts = JSON.stringify(data);
+					renderScriptsMainMenu();
+				});
+			}
+			
+			$('#script-list-page').on('pagebeforeshow',function(){
+				if (!sessionStorage.scriptindex) {
+					window.history.back();
+					return;
+				}
+				var index = parseInt(sessionStorage.scriptindex);
+				var data = JSON.parse( sessionStorage.scripts );
+				var script = data[index];
+				
+				$('#script-list-page-content').empty();
+				$('#script-list-page-content').append('<li data-role="list-divider"><h1>'+htmlEncode(script['name'])+'</h1></li>');
+				for(var i=0;i<script['list'].length;i++){
+					var music = script['list'][i];
+					$('#script-list-page-content').append('<li><a href="#" onclick="viewmusic('+i+');"><h1 style="white-space:normal;padding-left:0.5em;text-indent:-0.5em;" ><small>'+ String(i+1)+" " +htmlEncode(music['title'])+'</small></h1></a></li>');
+				}
+				$('#script-list-page-content').append('<li data-role="list-divider">&nbsp;Sequência</li>');
+				$('#script-list-page-content').append('<li><a href="#" onclick="viewallmusic();"><h1 style="white-space:normal;padding-left:0.5em;text-indent:-0.5em;" >Todas as músicas</h1></a></li>');
+				$('#script-list-page-content').append('<li><a href="#" onclick="pdfclick();"><h1 style="white-space:normal;padding-left:0.5em;text-indent:-0.5em;" >Todas as músicas (pdf)</h1></a></li>');
+				/*
+				$('#script-list-page-content').append('<li data-role="list-divider">PDF</li>');
+				$('#script-list-page-content').append('<li><a href="#" onclick="pdfmusic();"><h1 style="white-space:normal;padding-left:0.5em;text-indent:-0.5em;" >músico</h1></a></li>');
+				$('#script-list-page-content').append('<li><a href="#" onclick="pdfsinger();"><h1 style="white-space:normal;padding-left:0.5em;text-indent:-0.5em;" >cantor</h1></a></li>');
+				*/
+				
+				$('#script-list-page-content').append('<li data-role="list-divider">&nbsp;</li>');
+				
+				$('#script-list-page-content').listview();
+				$('#script-list-page-content').listview('refresh', true);
+				
+			});
+			
+			$('#flipmenu').val( localStorage.musico ).keyup();
+			
+			$('#flipmenu').change(function () {
+			
+				var optionSelected = $(this).find('option:selected');
+				var optValueSelected = optionSelected.val();
+				
+				localStorage.musico = optValueSelected;
+			});
+			
+			window.onbeforeprint = function() {
+				console.log('This will be called before the user prints.');
+				
+			};
+			
+			
+			$('#visao-cantor').on('pagebeforeshow',function(){
+				if (!sessionStorage.musicindex) {
+					window.history.back();
+					return;
+				}
+				
+				var index = parseInt(sessionStorage.scriptindex);
+				var data = JSON.parse( sessionStorage.scripts);
+				var script = data[index];
+				var musicindex = parseInt(sessionStorage.musicindex);
+				
+				$('#visao-cantor-title').text( script['name'] );
+				
+				document.title = script['name'] + ' - versão do cantor';
+				
+				$('#visao-cantor-parent').empty();
+				$('#summary-cantor').empty();
+				
+				if (musicindex >=0) {
+					
+					$('#visao-cantor-title').parent().parent().css('display','none');
+				
+					var music = script['list'][musicindex];
+					
+					music['title'] = String(musicindex + 1) + '. ' + music['title'];
+					
+					document.title = music['title'] + ' - versão do cantor';
+					
+					$('#visao-cantor-parent').append('<div class="ui-body ui-body-a FontPTSerif noborderprint zeromarginpaddingprint" id="visao-cantor-content" ></div><br class="noPrint" />');
+					renderMusic( music, '#visao-cantor-content', false );
+				} else {
+				
+					
+					$('#summary-cantor').append(generateSummary(script));
+					
+				
+					$('#visao-cantor-title').parent().parent().css('display','');
+					
+					//render all music...
+					for(var i=0;i<script['list'].length;i++){
+						var music = script['list'][i];
+						music['title'] = String(i + 1) + '. ' + music['title'];
+						
+						$('#visao-cantor-parent').append('<div class="ui-body ui-body-a FontPTSerif noborderprint zeromarginpaddingprint" id="c'+ String(i) +'" ></div><br class="noPrint" />');
+						renderMusic( music, '#c'+ String(i), false,false );
+					}
+				}
+			});
+			
+			
+			$('#visao-musico').on('pagebeforeshow',function(){
+				if (!sessionStorage.musicindex) {
+					window.history.back();
+					return;
+				}
+				
+				var index = parseInt(sessionStorage.scriptindex);
+				var data = JSON.parse( sessionStorage.scripts);
+				var script = data[index];
+				var musicindex = parseInt(sessionStorage.musicindex);
+				
+				
+				$('#visao-musico-title').text( script['name'] );
+				
+				document.title = script['name'] + ' - versão do músico';
+				
+				$('#visao-musico-parent').empty();
+				$('#summary-musico').empty();
+				
+				if (musicindex >=0) {
+					
+					$('#visao-musico-title').parent().parent().css('display','none');
+				
+					var music = script['list'][musicindex];
+					
+					
+					music['title'] = String(musicindex + 1) + '. ' + music['title'];
+					
+					document.title = music['title'] + ' - versão do músico';
+					
+					$('#visao-musico-parent').append('<div class="ui-body ui-body-a FontPTSerif noborderprint zeromarginpaddingprint" id="visao-musico-content" ></div><br class="noPrint" />');
+					renderMusic( music, '#visao-musico-content', true );
+				} else {
+					//render all music...
+					
+					$('#summary-musico').append(generateSummary(script));
+					
+					$('#visao-musico-title').parent().parent().css('display','');
+					
+					for(var i=0;i<script['list'].length;i++){
+						var music = script['list'][i];
+						music['title'] = String(i + 1) + '. ' + music['title'];
+
+						$('#visao-musico-parent').append('<div class="ui-body ui-body-a FontPTSerif noborderprint zeromarginpaddingprint" id="m'+ String(i) +'" ></div><br class="noPrint" />');
+						renderMusic( music, '#m'+ String(i) , true ,false );
+						
+					}
+				}
+				
+			});
+
+			
+		});
+		
+		
+		function localOpen(filename,text,_type){
+			// Set up the link
+			
+			
+			//link.setAttribute("target","_blank");
+			
+			if(Blob !== undefined ) {
+				
+				//convert string to byte array to use inside the blob
+				var byteCharacters = atob(text);
+				var byteNumbers = new Array(byteCharacters.length);
+				for (var i = 0; i < byteCharacters.length; i++)
+					byteNumbers[i] = byteCharacters.charCodeAt(i);
+				var byteArray = new Uint8Array(byteNumbers);
+
+				var blob = new Blob([byteArray], { type: _type });
+				
+				//link.setAttribute("href", URL.createObjectURL(blob));
+				//var win = window.open(URL.createObjectURL(blob)); 
+				//win.onload = function(){ this.document.title = 'someFile.pdf';};
+				
+				
+				var link = document.createElement("a");
+				link.href = URL.createObjectURL(blob);
+				link.dataset.downloadurl = 'application/pdf' + ':' + 'file.pdf' + ':' + link.href;
+				link.download = filename;
+				
+				document.body.appendChild(link);
+				link.click();
+				document.body.removeChild(link);
+				
+				return;
+				
+			} else {
+				var link = document.createElement("a");
+				link.href = "data:" + _type + "," + encodeURIComponent(text);
+				
+				link.download = filename;
+				
+				document.body.appendChild(link);
+				link.click();
+				document.body.removeChild(link);
+			}
+			
+			//link.setAttribute("download",filename);
+			
+			
+		}
+		
+		function pdfmusic() {
+			if (!sessionStorage.scriptindex)
+				return;
+			var index = parseInt(sessionStorage.scriptindex);
+			var data = JSON.parse( sessionStorage.scripts );
+			var script = data[index];
+			
+			localOpen( 'repertorio-musico.pdf',script['pdf-musician'], 'application/pdf;base64' );
+		}
+		
+		function pdfsinger() {
+			if (!sessionStorage.scriptindex) 
+				return;
+			var index = parseInt(sessionStorage.scriptindex);
+			var data = JSON.parse( sessionStorage.scripts );
+			var script = data[index];
+			
+			localOpen( 'repertorio-cantor.pdf',script['pdf-singer'], 'application/pdf;base64' );
+		}
+		
+		function pdfclick() {
+			if (localStorage.musico == 'on')
+				pdfmusic();
+			else
+				pdfsinger();
+		}
+		
+		</script>
+	</head>
+
+	<body onload="loadEnd();" >
+		
+		<div data-role="page" id="mainmenu" >
+			<div data-role="header"  class="fixtitle" >
+				<a href='#' class='ui-btn-left' data-icon='arrow-l' onclick="deviceBackPress();" >Voltar</a>
+				<h1>Repertório de Cantos</h1>
+			</div>
+			
+			<div role="main" class="ui-content" >
+			<ul data-role="listview" data-inset="false" data-divider-theme="a" data-split-icon="delete" id="script-list" >
+			</ul>
+				
+			</div>
+		</div>
+		
+		
+		
+		
+		<div data-role="page" id="script-list-page" >
+			<div data-role="header"  class="fixtitle2" >
+				<a href='#' class='ui-btn-left' data-icon='arrow-l' onclick="deviceBackPress();" >Voltar</a>
+				<h1>Repertório
+						<span style="float:right;">
+						<span class="flipclass" style="position:absolute;display:block;top:0.0em;">
+						<select name="flipmenu" id="flipmenu" data-role="slider" data-mini="true" >
+							<option value="on">Músico</option>
+							<option value="off">Cantor</option>
+						</select>
+						</span>
+						</span>
+				</h1>
+			</div>
+			
+			
+			<div role="main" class="ui-content" >
+			<ul data-role="listview" data-inset="false" data-divider-theme="a" data-split-icon="delete" id="script-list-page-content" >
+			</ul>
+			</div>
+		</div>
+		
+		
+		
+		
+		<div data-role="page" id="visao-cantor" class="zeromarginpaddingprint" >
+			<div data-role="header"  class="fixtitle" >
+				<a href='#' class='ui-btn-left' data-icon='arrow-l' onclick="deviceBackPress();" >Voltar</a>
+				<a href='#' onclick="window.print();" class='ui-btn ui-shadow ui-corner-all ui-icon-action ui-btn-icon-notext'    style="visibility:visible;float:right;margin-left:0;margin-bottom:0;margin-right:0.75em;margin-top:0.25em;" >imprimir</a>
+				<h1><small>Visão (cantor)</small></h1>
+			</div>
+			
+			<div role="main" class="ui-content zeromarginpaddingprint" >
+				<div class="firstpage" >
+					<div>
+						<h1 id="visao-cantor-title" >Título para impressão</h1>
+						<p>versão do cantor</p>
+					</div>
+				</div>
+				
+				<div id="summary-cantor"></div>
+				
+				<div class="ui-corner-all custom-corners zeromarginpaddingprint" id="visao-cantor-parent" >
+				</div>
+			</div>
+			
+		</div>
+		
+		
+		<div data-role="page" id="visao-musico" class="zeromarginpaddingprint" >
+			<div data-role="header"  class="fixtitle" >
+				<a href='#' class='ui-btn-left' data-icon='arrow-l' onclick="deviceBackPress();" >Voltar</a>
+				<a href='#' onclick="window.print();" class='ui-btn ui-shadow ui-corner-all ui-icon-action ui-btn-icon-notext'    style="visibility:visible;float:right;margin-left:0;margin-bottom:0;margin-right:0.75em;margin-top:0.25em;" >imprimir</a>
+				<h1><small>Visão (músico)</small></h1>
+			</div>
+			
+		
+			<div role="main" class="ui-content zeromarginpaddingprint" >
+				<div class="firstpage" >
+					<div>
+						<h1 id="visao-musico-title" >Título para impressão</h1>
+						<p>versão do músico</p>
+					</div>
+				</div>
+				
+				<div id="summary-musico"></div>
+				
+				<div class="ui-corner-all custom-corners zeromarginpaddingprint" id="visao-musico-parent"  >
+				</div>
+			</div>
+			
+		</div>
+		
+		
+		
+	</body>
+</html>

@@ -1,0 +1,149 @@
+<html>
+<header>
+</header>
+<body style="margin: 2.5em auto 2.5em auto;font-family:helvetica;max-width:600px;">
+
+<center><h1>Guia Digital</h1></center>
+
+<h2>Instalação</h2>
+
+<p>A pasta <b><i>Pacote_Criacao_Aplicativo\tools\3rdparty</i></b> contém os softwares necessários para instalar no computador para poder gerar a novena digital.
+<p>Esses são arquivos de suporte e devem ser instalados de acordo com a plataforma (64 bits ou 32 bits).</p>
+<p>É aconselhado a instalar o editor de texto <b>Notepad++</b> : <a href="https://notepad-plus-plus.org/download">https://notepad-plus-plus.org/download</a></p>
+
+<h2>Instalação - Plugin de highlight de texto para Notepad++</h2>
+
+<p>Para facilitar a edição dos arquivos fontes, foi configurado um formatador de texto para o editor Notepad++.</p>
+
+<p>O formatador se encontra no arquivo: <b><i>tools\notepad++_highlighter.xml</i></b>
+
+<p>Va em <b><i>linguagem</i></b>-><b><i>definir sua linguagem</i></b>-><b><i>importar</i></b>. E escolha o arquivo <b><i>notepad++_highlighter.xml</i></b></p>
+
+<div style="width:350px;"><b style="font-family:courier;" ><br /><br />Editor de texto com syntax-highlight instalado corretamente:</b></div>
+<img src="screens/exemplo-formatacao-texto.png" />
+<br /><br />
+
+<h2>Criar Novena Digital</h2>
+
+<p>A pasta <b><i>exemplos</i></b> possui vários exemplos (Novena de Natal, Novena de Nossa Senhora, Guia Semanal, etc...).</p>
+
+<p>O conteúdo que deve ser processado são arquivos de texto com extensão <b><i>.txt</i></b> que contem algumas marcações de formatação (titulo, subtitulo, texto, etc...) .</p>
+<p>Exemplo:</p>
+
+<div><b style="font-family:courier;font-size:small;" >dia1.txt:</b></div>
+
+<p style="font-family:courier;background-color:#eeeeee;padding:1em 1em 1em 1em;margin-top:0;">
+<b>{pagina-indice:</b>1<b>}</b><br />
+<b>{pagina-titulo:</b>O Deus da paz, nossa segurança!<b>}</b><br />
+<b>{pagina-subtitulo:</b>1º encontro<b>}</b><br />
+<br />
+<b>{destaque:</b>(Preparação do ambiente: em um lugar de destaque, colocar a bíblia aberta, com uma lamparina ou vela, e o encarte da Novena. O grupo pode se reunir junto ao presépio)<b>}</b><br />
+<br />
+<b>{titulo:</b>1 - Chegada e acolhida<b>}</b><br />
+<br />
+<b>{destaque:</b>(O grupo se ...)<b>}</b><br />
+<br />
+<b>{file:</b><b style="color:#0000ff;">[</b><b><i>musicas/abra-a-porta.txt</i></b><b style="color:#0000ff;">]</b>Musica de entrada<b>}</b><br />
+<br />
+<b>{subtitulo:</b>Dirigente:<b>}</b><br />
+<br />
+É de paz a nossa vinda! Neste primeiro encontro de nossa Novena de Natal, vamos nos preparar para acolher o Rei da Paz, o Deus-Menino!<br />
+<br />
+&lt;b&gt;Vamos refletir:&lt;/b&gt;<br />
+<br />
+Todos os dias, recebemos notícias ...<br />
+<br />
+Diante dessa constatação, precisamos ...<br />
+<br />
+...<br />
+<br />
+&lt;p&gt;&lt;i&gt;(SL 62 [61], 2-3.6-9.11-12)&lt;/i&gt;&lt;/p&gt;<br />
+<br />
+...<br />
+<br />
+<b>{destaque:</b>(Ao fim do encontro, ... )<b>}</b><br />
+</p>
+
+<p>A pasta <b><i>exemplos\novena-natal\musicas</i></b> tem o exemplo de uma lista de músicas selecionadas para cada parte da novena.</p>
+<p>Segue exemplo de um arquivo de música:</p>
+
+<div><b style="font-family:courier;font-size:small;" >refrao-meditativo-dia1.txt:</b></div>
+
+<p style="font-family:courier;background-color:#eeeeee;padding:1em 1em 1em 1em;margin-top:0;">
+<b>{musica-titulo:</b>O Senhor vai falar-nos de paz<b>}</b><br />
+<b>{musica-autor:</b>Anônimo<b>}</b><br />
+<br />
+<span style="color:#00aa00;">//entrada, perdão, glória, aclamação, salmo, ofertório, santo, consagração, amém, cordeiro, comunhão, final<br /></span>
+<b>{musica-categoria:}</b><br />
+<br />
+<span style="color:#00aa00;">//advento, natal, comum, quaresma, semana-santa, páscoa<br /></span>
+<b>{musica-tempo-liturgico:}</b><br />
+<br />
+<b>{refrão:</b>O Senhor vai falar-nos de paz,<br />
+a teu povo e a todos amigos,<b>}</b><br />
+<br />
+<b>{verso:</b>paz a quantos a Ele se achegam,<br />
+e se alegre o teu povo contigo!<b>}</b><br />
+<br />
+<b>{refrão:</b>O Senhor vai falar-nos de paz,<br />
+a teu povo e a todos amigos,<b>}</b><br />
+<br />
+<b>{verso:</b>Paz a quantos a Ele se achegam,<br />
+e se alegre o teu povo contigo!<b>}</b><br />
+<br />
+<b>{refrão:</b>O Senhor vai falar-nos de paz,<br />
+a teu povo e a todos amigos,<b>}</b><br />
+<br />
+<span style="color:#00aa00;">//{musica-link-cifra:}<br />
+//{musica-link-partitura:}<br />
+//{musica-link-audio:}<br />
+//{musica-link-video:}</span><br />
+</p>
+
+
+<p>Depois de digitar todas as músicas, com as respectivas páginas e refêrencias, tem que se executar o arquivo: <b><i>GerarNovena.bat</i></b> que irá gerar a novena digital no arquivo json ( exemplo: <b><i>novena-natal.json</i></b> ) .</p>
+<p>Esse arquivo deve ser copiado para a pasta <b><i>guia-digital</i></b> dentro do conteúdo online do aplicativo.</p>
+<p>Pronto, agora já da para ver a novena digital que foi gerada quando clicar no arquivo <b><i>abrirchrome.bat</i></b> . Para abrir o navegador google chrome em modo especial para teste.</p>
+
+<h2>Arquivos de customização de músicas</h2>
+
+<p>Quando se gerar uma novena, pode ser gerado também um arquivo zip chamado <b><i>novena-natal-music-template.zip</i></b> onde serão organizados entradas de customização das músicas da novena.</p>
+<p>Essa pasta pode ser distribuída entre as paróquias, e cada uma delas poderá colocar as sugestões de músicas da novena digital e utilizar esses arquivos juntamente ao texto original da novena que foi criado.</p>
+<p>Após alterar o conteúdo do arquivo music-template.json e demais arquivos de texto de músicas relacionadas, basta executar o arquivo GerarCustomizacaoMusica.bat para gerar o arquivo json (exemplo: novena-natal-customizacao-musical.json) . Ao final basta copiar esse arquivo para a pasta guia-digital no conteúdo online .</p>
+
+<!--h2>Distribuição</h2>
+
+<p>O processo descrito anteriormente serve para editar o conteúdo.<p>
+<p>Para distribuir, basta copiar os arquivos com extensão .json que foram gerados.<p>
+<p>Explicação: Os arquivos .json possuem toda a informação necessária para construir uma visualização de dados referente a novena. Ou seja, qualquer pessoa com conhecimentos de programação (construtores de sites, programadores, entusiastas em geral ...) podem criar diferentes visualizações desses dados.<p>
+<p>As pastas <b><i>builtin</i></b> e <b><i>content</i></b> possuem um software/página em HTML5 que usa recursos que permitem visualização em navegadores de internet (browsers) e smartphones.</p-->
+
+<h2>Imagens de exemplo de navegação (Layout do aplicativo da paróquia)</h2>
+
+<div style="width:350px;"><b style="font-family:courier;" >Listagem das versões (músicas diferentes) da mesma novena:</b></div>
+<img style="width:350px;" src="screens/1 novena-versoes.png" />
+
+<div style="width:350px;"><b style="font-family:courier;" ><br /><br />Listagem de dias da novena:</b></div>
+<img style="width:350px;" src="screens/2 dias.png" />
+
+<div style="width:350px;"><b style="font-family:courier;" ><br /><br />Geração do texto do primeiro dia lendo o arquivo allpages.json:</b></div>
+<img style="width:350px;" src="screens/3 novena-texto-dia1.png" />
+
+<div style="width:350px;"><b style="font-family:courier;" ><br /><br />Geração de música lendo o arquivo allpages.json:</b></div>
+<img style="width:350px;" src="screens/4 musica-exemplo1.png" />
+
+<div style="width:350px;"><b style="font-family:courier;" ><br /><br />Geração de música lendo o arquivo external-music.json:</b></div>
+<img style="width:350px;" src="screens/5 musica-exemplo2.png" />
+
+<!--h2>Sugestão de utilização</h2>
+
+<p>1) Quando for planejar uma novena, editar o texto com a marcação de dias da forma que está no exemplo nos arquivos de texto.</p>
+<p>2) Selecionar as músicas que estiverem relacionadas com o tema da novena a ser criada.</p>
+<p>3) Gerar e disponibilizar no site da arquidiocese o arquivo: <b><i>allpages.json</i></b> e a pasta (comprimida em arquivo .zip): <b><i>music-template</i></b></p>
+<p style="margin-left:2em;">Com esses arquivos no site da arquidiocese, os aplicativos ou sites podem ler a informação da novena online e integrar com o seu próprio conteúdo.</p>
+<p>4) Com a pasta <b><i>music-template</i></b> em mãos, cada paróquia pode criar suas versões de músicas customizadas e cadastrar no site da arquidiocese mesmo.</p>
+
+<p style="margin-left:2em;">Obs.: É possível que seja disponibilizado também as pastas <b><i>builtin</i></b> e <b><i>content</i></b> para servirem de exemplo da leitura dos arquivos da novena e cada paróquia poderá utilizar do arquivo como desejar, sendo possível até a integração em um web site.</p-->
+
+</body>
+</html>

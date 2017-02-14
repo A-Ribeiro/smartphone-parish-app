@@ -1,0 +1,147 @@
+.underline:after {
+	content: '';
+	display: block;
+	/*position: absolute;*/
+	height: 4px;
+	width: 40px;
+	bottom: 0;
+	left: 0;
+	background-color: #275683;
+	box-sizing: border-box;
+	
+	margin-top:0.5em;
+	margin-bottom:2.0em;
+	
+}
+
+.verse {
+	
+	margin-left:0.0em;
+	margin-right:2.0em;
+	
+	margin-bottom:0.2em;
+	margin-top:0.25em;
+	
+	line-height:2.5em;
+	padding-top:2.0em;
+	
+	/*
+	padding-top:1.5em;
+	border: 1px solid black;
+	*/
+}
+
+.chord {
+	position:absolute;
+	margin-top:-1.3em;
+	color:#0000ff;
+	font-weight:bold;
+	font-size:80%;
+}
+
+.intro {
+	color:#0000ff;
+	font-weight:bold;
+	font-size:80%;
+	margin:0;
+	padding:0;
+}
+
+.intro-normal {
+	color:#000000;
+	font-weight:normal;
+}
+
+
+@media print {
+	
+	
+	.intro {
+		margin-top:2.5em;
+	}
+
+	.underline:after {
+		margin-top:0.5em;
+		margin-bottom:0.0em;
+	}
+	
+	
+	.fixtitle,.fixtitle2{
+		display:none;
+	}
+
+	.noborderprint {
+		border-style:none;
+	}
+	
+	div.pagei
+	{
+		page-break-inside: avoid;
+		-webkit-region-break-inside: avoid;
+		min-height: 200mm;
+		margin: 0mm 0mm -0.25em 0mm;
+		display:block;
+		
+	}
+	
+	div.pagei p, div.pagei h1, div.pagei h2
+	{
+		-webkit-region-break-inside: avoid;
+		page-break-inside: avoid;
+		
+	}
+	
+	
+	
+	div.firstpage
+	{
+		page-break-inside: avoid;
+		-webkit-region-break-inside: avoid;
+		margin: 90mm 0mm 0mm 0mm;
+		min-height: 110mm;
+		text-align:right;
+		display:block;
+	}
+	
+	div.firstpage div {
+		display:inline-block;
+	}
+	
+	div.firstpage div h1, div.firstpage div p {
+		text-align:right;
+	}
+	
+	@page { 
+		size: auto;
+		margin: 20mm 15mm 20mm 15mm;
+	}
+
+	
+	.noPrint
+	{
+		display:none;
+	}
+	
+	.lastverse {
+		margin: 0em 0em -0.375em 0em;
+	}
+	
+	.zeromarginpaddingprint
+	{
+		padding:0;margin:0;
+	}
+}
+
+
+@media screen {
+	
+	.noShow
+	{
+		display:none;
+	}
+	
+    .firstpage
+	{
+		display:none;
+	}
+}

@@ -1,0 +1,38 @@
+############################################################
+# Pacote de criação de aplicativo com atualização dinâmica #
+############################################################
+#                                                          #
+# Configuração do google drive                             #
+#                                                          #
+############################################################
+
+O primeiro passo para configurar o aplicativo com 
+atualização dinâmica de conteúdo utilizando o serviço de 
+arquivos do google drive é:
+
+1) Possuir uma conta google. 
+
+Ela é necessária para configurar o sistema de atualização.
+
+2) Executar o arquivo configurar.bat.
+
+Esse arquivo irá verificar a conectividade com sua conta ao
+mesmo tempo irá criar uma pasta chamada 
+'AplicativoSmartphone' em sua conta.
+
+Quando for executado a primeira vez, será necessário copiar 
+e colar a URL que aparecer no navegador de internet. 
+Obs.: Não feche a janela de terminal.
+
+Essa página irá pedir para que você logue e dê sua permissão 
+para ligar a sua conta do google com o software gdrive.
+
+Ao permitir, o navegador irá mostrar um código.
+
+Esse código deve ser copiado do navegador e colado no 
+terminal para autenticar o software.
+
+3) Pronto
+
+Agora você pode ir para o próximo passo.
+

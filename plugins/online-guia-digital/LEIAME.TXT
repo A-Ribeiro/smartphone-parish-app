@@ -1,0 +1,8 @@
+***********************
+* Plugin Guia Digital *
+***********************
+
+Esse plugin pode ser instalado usando o script da pasta 'app'.
+
+É um plugin online, ou seja, não é necessário atualizar o 
+aplicativo na Play Store para instala-lo.

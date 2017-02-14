@@ -1,0 +1,64 @@
+﻿
+{musica-titulo:Quando o dia da paz renascer}
+{musica-autor:Pe. José3}
+
+//entrada, perdão, glória, aclamação, salmo, ofertório, santo, consagração, amém, cordeiro, comunhão, final
+{musica-categoria:}
+
+//advento, natal, comum, quaresma, semana-santa, páscoa
+{musica-tempo-liturgico:}
+
+{refrão:Vai ser tão bonito se ouvir a canção,
+cantada, de novo.
+
+No olhar da gente a certeza do irmão.
+Reinado, do povo.}
+
+{verso:Quando o dia da paz renascer,
+quando o sol da esperança brilhar,
+eu vou cantar.
+
+Quando o povo nas ruas sorrir,
+e a roseira de novo florir,
+eu vou cantar.
+
+Quando as cercas caírem no chão,
+quando as mesas se encherem de pão,
+eu vou cantar.
+
+Quando os muros que cercam os jardins,
+destruídos então, os jasmins,
+vão perfumar.}
+
+{refrão:Vai ser tão bonito se ouvir a canção,
+cantada, de novo.
+
+No olhar da gente a certeza do irmão.
+Reinado, do povo.}
+
+{verso:Quando as armas da destruição,
+destruídas em cada nação,
+eu vou sonhar.
+
+E o decreto que encerra a opressão,
+assinado só no coração,
+vai triunfar.
+
+Quando a voz da verdade se ouvir,
+e a mentira não mais existir,
+será enfim,
+
+tempo novo de eterna justiça,
+sem mais ódio, sem sangue ou cobiça,
+vai ser assim.}
+
+{refrão:Vai ser tão bonito se ouvir a canção,
+cantada, de novo.
+
+No olhar da gente a certeza do irmão.
+Reinado, do povo.}
+
+{musica-link-cifra:}
+{musica-link-partitura:}
+{musica-link-audio:}
+{musica-link-video:}

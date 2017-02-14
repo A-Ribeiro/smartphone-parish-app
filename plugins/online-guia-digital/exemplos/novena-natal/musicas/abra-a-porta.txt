@@ -1,0 +1,34 @@
+﻿
+{musica-titulo:Abra a porta, abra a janela}
+{musica-autor:Pe. José}
+
+//entrada, perdão, glória, aclamação, salmo, ofertório, santo, consagração, amém, cordeiro, comunhão, final
+//{musica-categoria:}
+
+//advento, natal, comum, quaresma, semana-santa, páscoa
+//{musica-tempo-liturgico:}
+
+{refrão:Abra a porta, abra a janela,
+Venha ver quem é que vem!(bis)
+É Jesus quem vem chegando,
+Ele é o nosso bem!(bis)}
+
+{verso:Preparados, vamos juntos
+Encontrar quem nos quer bem!(bis)
+Eis que vem depressa o noivo,
+Vem ao nosso encontro, vem(bis)}
+
+{refrão:Abra a porta, abra a janela,
+Venha ver quem é que vem!(bis)
+É Jesus quem vem chegando,
+Ele é o nosso bem!(bis)}
+
+{verso:Aleluia, irmãos e amigos,
+Em Jesus, Deus nos quer bem!
+Glória ao Pai e ao Espírito,
+Glória a quem para nós vem!}
+
+//{musica-link-cifra:}
+//{musica-link-partitura:}
+//{musica-link-audio:}
+//{musica-link-video:}

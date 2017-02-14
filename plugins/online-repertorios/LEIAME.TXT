@@ -1,0 +1,42 @@
+***********************************
+* Plugin de repertório de músicas *
+***********************************
+
+É um plugin online, ou seja, não é necessário atualizar o 
+aplicativo na Play Store para instala-lo.
+
+Esse plugin possui duas partes:
+
+1) Editor de música e repertório em PHP
+
+  - entre na pasta 'website-php' para configura-lo
+
+2) Visualizador HTML de arquivo exportado que pode 
+  ser integrado ao conteúdo online do aplicativo.
+
+  - entre na pasta 'app' para instala-lo
+
+------------
+ Editor de música e repertório
+------------
+
+A pasta website-php possui um script para auxilia-lo
+na instalação do editor.
+
+É importante que se tenha um servidor de hosting para
+hospedar o editor.
+
+*Obs.: O sistema de login é vinculado ao login do google
+       dessa forma, é necessário realizar essa configuração.
+
+------------
+ Visualizador HTML
+------------
+
+O visualizador HTML pode ser integrado ao conteúdo
+com atualização online da pasta '3 conteudo online'.
+
+Um repertório novo pode ser gerado pelo site e copiado
+para a pasta 'content\repertorios\lista_repertorios.json'.
+
+E o aplicativo irá mostrar a compilação feita no site.

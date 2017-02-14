@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+	<title>Paróquia App</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../builtin/js/orangetheme.min.css" />
+	<link rel="stylesheet" href="js/theme.min.css" />
+	<link rel="stylesheet" href="../builtin/js/jquery.mobile.icons-1.4.5.min.css" />
+	<link rel="stylesheet" href="../builtin/js/jquery.mobile.structure-1.4.5.min.css" />
+	<script src="../builtin/js/jquery.min.js"></script>
+	<!-- class="FontPTSerif" -->
+	<link rel="stylesheet" href="../builtin/js/customfont.css" />
+	<script>
+	
+		var tabs = [];
+		
+		function closeAllList() {
+			if (tabs.length > 0) {
+				for(var i = tabs.length - 1; i >= 0; i--) {
+					$(tabs[i]).collapsible({collapsed: true});
+					//tabs.splice(i, 1);
+				}
+				
+				$('html,body').animate({scrollTop: 0});
+				history.replaceState({}, null, "paroquia.html" );
+				return true;
+			} else
+				return false;
+		}
+		
+		// device events
+		function deviceBackPress() {
+			if (!closeAllList())
+				alert("android.forwardBackPress");
+		}
+		
+		$(document).bind("mobileinit", function(){
+			//$.extend(  $.mobile , {
+			//	ajaxEnabled: false
+			//});
+			
+			//$.mobile.defaultPageTransition = 'none';
+			//$.mobile.defaultDialogTransition = 'none';
+			$.mobile.useFastClick = true;
+		});
+	</script>
+	<script src="../builtin/js/jquery.mobile-1.4.5.min.js"></script>
+	<script>
+		function localParam() {
+			var paramList = window.location.href.split("#");
+			if (paramList.length == 2)
+				return paramList[1];
+			else
+				return null;
+		}
+		
+		function openAndScroll(id){
+			$(id).collapsible({collapsed: false});
+			
+		}
+		
+		function closeItem(id) {
+			if (!closeAllList()) {
+				$(id).collapsible({collapsed: true});
+				$('html,body').animate({scrollTop: 0});
+				
+				history.replaceState({}, null, "paroquia.html" );
+			}
+		}
+		
+		$(document).ready(function () {
+		
+			jQuery.ajaxSetup({async:false});
+		
+			$("#content-paroquia").empty();
+		
+			$.getJSON( 'paroquia.json', function( data ) {
+				for(var i=0;i<data["list"].length;i++) {
+					var entry = data["list"][i];
+					if (entry['builtin']) {
+						var html = '<div id="_'+i+'" class="expandevt" data-role="collapsible" data-collapsed-icon="carat-d" data-expanded-icon="carat-u" data-iconpos="right" >'+
+									'<h4>'+entry["title"]+'</h4>';
+						html += entry['text'];
+						html += '<p class="center" ><a href="#" class="ui-btn ui-icon-carat-u ui-btn-icon-left ui-btn-inline" onclick="closeItem(\'#_'+i+'\'); return false;">Voltar</a></p>';
+						html += '</div>';
+						$("#content-paroquia").append( html );
+						$("#_"+i).collapsible();
+						$("#_"+i).collapsible('refresh',true);
+					} else 
+						$("#content-paroquia").append( entry['text'] );
+					
+				}
+			} );
+			
+			$( ".expandevt" ).on( "collapsibleexpand", function( event, ui ) {
+				history.replaceState({}, null, "paroquia.html#".concat( $(this).attr('id') ) );
+				$('html,body').animate({scrollTop: $(this).offset().top});
+				
+				tabs.push("#".concat($(this).attr('id')));
+				
+			} );
+			
+			$( ".expandevt" ).on( "collapsiblecollapse", function( event, ui ) {
+				history.replaceState({}, null, "paroquia.html" );
+				
+				var index = tabs.indexOf("#".concat($(this).attr('id')));
+				if(index != -1)
+					tabs.splice( index, 1 );
+				
+			} );
+			
+			var param = localParam();
+			if ( param != null ) {
+				param = "#".concat(param);
+				//check if element exists
+				if ($(param).length > 0) {
+					$(param).collapsible({collapsed: false});
+					//$('html,body').animate({scrollTop: $(param).offset().top});
+				}
+			}
+			
+		});
+		
+	</script>
+	
+	<style>
+	
+	.gridtitle .ui-block-a, .gridtitle .ui-block-b {
+		border: 1px solid black;
+		font-weight: bold;
+		text-align: center;
+		padding: 1em;
+	}
+	.gridcontent .ui-block-a, .gridcontent .ui-block-b {
+		background-color: none;
+		border: 1px solid black;
+		font-weight: normal;
+		text-align: center;
+		padding: .2em;
+	}
+	
+	.spanparent{
+		display: inline-block;
+		white-space:nowrap;
+	}
+	.spantitle{
+		font-weight:bold;
+		display: inline-block;
+		width: 5.5em;
+		padding-left: 0.2em;
+		padding-right: 0.2em;
+		float:left;
+	}
+	
+	.spantitlemin {
+		width: 5em;
+	}
+	
+	.spandesc{
+		display: inline-block;
+		padding: 0.2em;
+		white-space:normal;
+		margin-right:5em;
+		word-wrap: break-word;
+	}
+	
+	.normalwrap {
+		margin-right:-0.5em;
+	}
+	
+	.wordwrap {
+		word-break:break-all;
+		margin-right:-0.5em;
+	}
+	
+	.oneline {
+		display: block;
+		text-overflow: ellipsis;
+		overflow:hidden;
+		white-space:nowrap;
+		margin-right:0em;
+		min-width:0em;
+		text-min-width:0em;
+	}
+	
+	.spanend{
+		clear:both;
+	}
+	
+	.center {
+		text-align:center;
+	}
+	
+	.justify {
+		text-align:justify;
+	}
+	</style>
+</head>
+<body>
+
+<!-- Start of first page -->
+<div data-role="page" id="paroquia">
+
+	<div data-role="header" data-position="inline" > <!-- data-position="fixed" -->
+		<div data-role="navbar" >
+			<ul>
+				<li><a href="#" onclick="$.mobile.changePage($(document.location.href='noticia.html'));"    rel="external" >
+					<img src="../builtin/png/newspaper.png" alt="noticia" /><br />
+					Notícias<br />&nbsp;</a>
+				</li>
+				<li><a href="#" onclick="$.mobile.changePage($(document.location.href='paroquia.html'));"   rel="external" class="ui-btn-active ui-state-persist" >
+					<img src="../builtin/png/home3.png" alt="paroquia" /><br />
+					A Paróquia<br />&nbsp;</a>
+				</li>
+				<li><a href="#" onclick="$.mobile.changePage($(document.location.href='comunidade.html'));" rel="external" >
+					<img src="../builtin/png/office.png" alt="comunidade" /><br />
+					Atividades da<br />Comunidade</a>
+				</li>
+				<li><a href="#" onclick="$.mobile.changePage($(document.location.href='oracao.html'));"     rel="external" >
+					<img src="../builtin/png/pencil.png" alt="oracao" /><br />
+					Pedido de<br />Oração</a>
+				</li>
+				<li></li><li></li>
+			</ul>
+		</div><!-- /navbar -->
+		<h1 style="margin:0 0 0 0;" >A Paróquia</h1>
+	</div><!-- /header -->
+	
+	<div role="main" class="ui-content" id="content-paroquia" >
+	</div><!-- /content -->
+
+</div><!-- /page -->
+
+</body>
+</html>
+
