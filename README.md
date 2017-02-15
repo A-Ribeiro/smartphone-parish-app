@@ -6,7 +6,7 @@ This Package has algorithms and libraries needed to create and publish online sm
 
 ## Youtube Video Tutorials (Portuguese) ##
 
-Site: https://smartphoneapp.000webhostapp.com/
+Site: https://sites.google.com/site/smartphoneparishapp/
 
 Playlist: https://www.youtube.com/playlist?list=PLzYwgThaLm9X4Rf1dNT20W52ryCF9k2hJ
 
@@ -61,7 +61,7 @@ Esse pacote contém algoritmos e bibliotecas necessárias para publicação de a
 
 ## Tutoriais em Vídeos no Youtube ##
 
-Site: https://smartphoneapp.000webhostapp.com/
+Site: https://sites.google.com/site/smartphoneparishapp/
 
 Playlist: https://www.youtube.com/playlist?list=PLzYwgThaLm9X4Rf1dNT20W52ryCF9k2hJ
 
