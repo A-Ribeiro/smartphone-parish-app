@@ -43,8 +43,8 @@
 		<script>
 		// device events
 		
-		if (!localStorage.musico)
-			localStorage.musico = 'on';
+		if (!sessionStorage.musico)
+			sessionStorage.musico = 'on';
 		
 		function deviceBackPress() {
 			window.history.back();
@@ -98,7 +98,7 @@
 			sessionStorage.musicindex = String(index);
 			//$.mobile.changePage( "#music-page" );
 			
-			if (localStorage.musico == 'on')
+			if (sessionStorage.musico == 'on')
 				$.mobile.changePage( "#visao-musico" );
 			else
 				$.mobile.changePage( "#visao-cantor" );
@@ -110,7 +110,7 @@
 			
 			sessionStorage.musicindex = "-1";
 			
-			if (localStorage.musico == 'on')
+			if (sessionStorage.musico == 'on')
 				$.mobile.changePage( "#visao-musico" );
 			else
 				$.mobile.changePage( "#visao-cantor" );
@@ -183,7 +183,7 @@
 				}
 				$('#script-list-page-content').append('<li data-role="list-divider">&nbsp;Sequência</li>');
 				$('#script-list-page-content').append('<li><a href="#" onclick="viewallmusic();"><h1 style="white-space:normal;padding-left:0.5em;text-indent:-0.5em;" >Todas as músicas</h1></a></li>');
-				$('#script-list-page-content').append('<li><a href="#" onclick="pdfclick();"><h1 style="white-space:normal;padding-left:0.5em;text-indent:-0.5em;" >Todas as músicas (pdf)</h1></a></li>');
+				//$('#script-list-page-content').append('<li><a href="#" onclick="pdfclick();"><h1 style="white-space:normal;padding-left:0.5em;text-indent:-0.5em;" >Todas as músicas (pdf)</h1></a></li>');
 				/*
 				$('#script-list-page-content').append('<li data-role="list-divider">PDF</li>');
 				$('#script-list-page-content').append('<li><a href="#" onclick="pdfmusic();"><h1 style="white-space:normal;padding-left:0.5em;text-indent:-0.5em;" >músico</h1></a></li>');
@@ -197,14 +197,14 @@
 				
 			});
 			
-			$('#flipmenu').val( localStorage.musico ).keyup();
+			$('#flipmenu').val( sessionStorage.musico ).keyup();
 			
 			$('#flipmenu').change(function () {
 			
 				var optionSelected = $(this).find('option:selected');
 				var optValueSelected = optionSelected.val();
 				
-				localStorage.musico = optValueSelected;
+				sessionStorage.musico = optValueSelected;
 			});
 			
 			window.onbeforeprint = function() {
@@ -323,8 +323,8 @@
 			
 			
 			//link.setAttribute("target","_blank");
-			
-			if(Blob !== undefined ) {
+			/*
+			if(Blob !== undefined  && false) {
 				
 				//convert string to byte array to use inside the blob
 				var byteCharacters = atob(text);
@@ -351,11 +351,16 @@
 				
 				return;
 				
-			} else {
+			} else 
+			
+			*/
+			{
 				var link = document.createElement("a");
 				link.href = "data:" + _type + "," + encodeURIComponent(text);
 				
-				link.download = filename;
+				//link.download = filename;
+				
+				//$(link).attr('rel', 'external');
 				
 				document.body.appendChild(link);
 				link.click();
@@ -388,7 +393,7 @@
 		}
 		
 		function pdfclick() {
-			if (localStorage.musico == 'on')
+			if (sessionStorage.musico == 'on')
 				pdfmusic();
 			else
 				pdfsinger();
