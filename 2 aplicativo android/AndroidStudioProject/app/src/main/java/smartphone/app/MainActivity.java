@@ -5,6 +5,7 @@ import android.app.Application;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.media.MediaScannerConnection;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -45,6 +46,8 @@ import java.nio.channels.ReadableByteChannel;
 import java.nio.charset.StandardCharsets;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
+import android.util.Base64;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -137,30 +140,12 @@ public class MainActivity extends AppCompatActivity {
 
         webView.setWebViewClient(new WebViewClient(){
 
+            /*
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
-                String requeststr = request.toString();
-                if (requeststr.startsWith("http://") ||
-                        requeststr.startsWith("https://") ||
-                        requeststr.startsWith("market://") ||
-                        requeststr.startsWith("mailto:") ||
-                        requeststr.startsWith("geo:") ||
-                        requeststr.startsWith("tel:")) {
-
-                    if (requeststr.startsWith("http") || requeststr.startsWith("market://") )
-                        openWebPage(requeststr);
-                    else if (requeststr.startsWith("geo"))
-                        showMap(Uri.parse(requeststr));
-                    else if (requeststr.startsWith("mailto"))
-                        sendMail(requeststr);
-                    else if (requeststr.startsWith("tel"))
-                        dialPhoneNumber(requeststr);
-
-                    Log.d("url","loading external url: " + requeststr );
-                    return true;
-                }
                 return super.shouldOverrideUrlLoading(view, request);
             }
+            */
 
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -170,7 +155,8 @@ public class MainActivity extends AppCompatActivity {
                         requeststr.startsWith("market://") ||
                         requeststr.startsWith("mailto:") ||
                         requeststr.startsWith("geo:") ||
-                        requeststr.startsWith("tel:") ) {
+                        requeststr.startsWith("tel:") ||
+                        requeststr.startsWith("data:") ) {
 
                     if (requeststr.startsWith("http")  || requeststr.startsWith("market://") )
                         openWebPage(requeststr);
@@ -180,8 +166,50 @@ public class MainActivity extends AppCompatActivity {
                         sendMail(requeststr);
                     else if (requeststr.startsWith("tel"))
                         dialPhoneNumber(requeststr);
+                    else if (requeststr.startsWith("data:application/pdf;base64,")) {
+                        String content = requeststr.substring( "data:application/pdf;base64,".length() );
+                        try{
+                            content = java.net.URLDecoder.decode(content,"UTF-8");
+                        }catch(Exception e){
+                        }
 
-                    Log.d("url","loading external url: " + requeststr );
+                        File dir = new File(Environment.getExternalStorageDirectory() + "/Download/ParishApp/");
+                        dir.mkdirs();
+
+                        File file = new File(Environment.getExternalStorageDirectory() + "/Download/ParishApp/view.pdf");
+
+                        try {
+                            if (file.exists())
+                                file.delete();
+
+                            FileOutputStream bos = new FileOutputStream(file);
+                            bos.write(Base64.decode(content, 0));
+                            bos.flush();
+                            bos.close();
+
+                            MediaScannerConnection.scanFile(getApplicationContext(), new String[] { file.toString() }, null,
+                            new MediaScannerConnection.OnScanCompletedListener() {
+                                public void onScanCompleted(String path, Uri uri) {
+                                    Log.i("ExternalStorage", "Scanned " + path + ":");
+                                    Log.i("ExternalStorage", "-> uri=" + uri);
+
+                                    Intent intent;
+                                    intent = new Intent(Intent.ACTION_VIEW);
+                                    intent.setDataAndType( uri , "application/pdf");
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    if (intent.resolveActivity(getPackageManager()) != null) {
+                                        startActivity(intent);
+                                    }
+
+                                }
+                            });
+                        } catch (IOException e) {
+                            //Log.e(TAG, "IOError with PDF");
+                            e.printStackTrace();
+                        }
+                    }
+
+                    //Log.d("url","loading external url: " + requeststr );
                     return true;
                 }
                 return super.shouldOverrideUrlLoading(view, url);
