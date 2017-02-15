@@ -72,7 +72,11 @@ if exist builtin.zip (
 echo copy files to android project location...
 echo.
 
-del "..\2 aplicativo android\AndroidStudioProject\app\src\main\res\raw\*.zip"
+if not exist "..\2 aplicativo android\AndroidStudioProject\app\src\main\res\raw\" (
+	mkdir "..\2 aplicativo android\AndroidStudioProject\app\src\main\res\raw\"
+)
+
+del "..\2 aplicativo android\AndroidStudioProject\app\src\main\res\raw\*.zip" >null
 move content.zip "..\2 aplicativo android\AndroidStudioProject\app\src\main\res\raw\" >null
 move builtin.zip "..\2 aplicativo android\AndroidStudioProject\app\src\main\res\raw\" >null
 
