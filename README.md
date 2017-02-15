@@ -8,6 +8,8 @@ This Package has algorithms and libraries needed to create and publish online sm
 
 Site: https://smartphoneapp.000webhostapp.com/
 
+Playlist: https://www.youtube.com/playlist?list=PLzYwgThaLm9X4Rf1dNT20W52ryCF9k2hJ
+
 The Youtube videos where created to give a step-by-step guideline related to the several features these tools have.
 
 1. [Downloading Project from GitHub](https://youtu.be/UUGD_SbGjyk)
@@ -60,6 +62,8 @@ Esse pacote contém algoritmos e bibliotecas necessárias para publicação de a
 ## Tutoriais em Vídeos no Youtube ##
 
 Site: https://smartphoneapp.000webhostapp.com/
+
+Playlist: https://www.youtube.com/playlist?list=PLzYwgThaLm9X4Rf1dNT20W52ryCF9k2hJ
 
 Os vídeos no Youtube foram criados para servir como guias passo a passo relacionado as diversas funções que essa ferramenta possui.
 
