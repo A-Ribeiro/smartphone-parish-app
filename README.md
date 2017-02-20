@@ -2,16 +2,16 @@
 
 ## Release v1.0 ##
 
-1. Google Drive setup script
-1. Builtin content pack script
-1. Online content pack and upload script
-1. Android Studio application project
-1. News editor
-1. Group editor
-1. Parish information editor
-1. Pray editor
-1. Included Plugin: online-guia-digital (digital guide)
-1. Included Plugin: online-repertorios (music script)
+* Google Drive setup script
+* Builtin content pack script
+* Online content pack and upload script
+* Android Studio application project
+* News editor
+* Group editor
+* Parish information editor
+* Pray editor
+* Included Plugin: online-guia-digital (digital guide)
+* Included Plugin: online-repertorios (music script)
 
 # Smartphone Application for Catholic Parish: EN #
 
