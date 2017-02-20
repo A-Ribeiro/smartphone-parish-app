@@ -1,3 +1,18 @@
+# Release Notes #
+
+## Release v1.0 ##
+
+* Google Drive setup script
+* Builtin content pack script
+* Online content pack and upload script
+* Android Studio application project
+* News editor
+* Group editor
+* Parish information editor
+* Pray editor
+* Included Plugin: online-guia-digital (digital guide)
+* Included Plugin: online-repertorios (music script)
+
 # Smartphone Application for Catholic Parish: EN #
 
 ## Description ##
