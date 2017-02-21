@@ -28,6 +28,6 @@ echo * Processo concluido *
 echo **********************
 echo.
 echo.
-echo Obs.: Não é necessário gerar pacote embutido para esse plugin
+echo Obs.: Nao e necessario gerar pacote embutido para esse plugin
 echo.
 pause
