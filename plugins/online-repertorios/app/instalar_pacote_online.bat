@@ -3,10 +3,10 @@ setlocal EnableDelayedExpansion
 chcp 65001 > null
 echo.
 echo ********************************
-echo * Instalação de pacote ONLINE  *
+echo * Instalacao de pacote ONLINE  *
 echo ********************************
 echo.
-echo Será instalado o plugin 'repertorios' na
+echo Sera instalado o plugin 'repertorios' na
 echo pasta '3 conteudo online\content'.
 echo.
 pause
