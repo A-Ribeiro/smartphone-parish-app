@@ -123,7 +123,7 @@ if "%googleClientID%" == "" (
 	echo.
 	echo OBS.: Nenhum client ID digitado.
 	echo.
-	echo O sistema de login do Google estará desligado.
+	echo O sistema de login do Google estara desligado.
 	echo.
 	echo Nao e' recomendado utilizar essa instalacao em um servidor online.
 	echo.

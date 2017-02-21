@@ -3,10 +3,10 @@ setlocal EnableDelayedExpansion
 chcp 65001 > null
 echo.
 echo ***********************************
-echo * Desinstalação de pacote ONLINE  *
+echo * Desinstalacao de pacote ONLINE  *
 echo ***********************************
 echo.
-echo O plugin 'repertorios' será desinstalado.
+echo O plugin 'repertorios' sera desinstalado.
 echo.
 pause
 cls
@@ -25,6 +25,6 @@ echo **********************
 echo * Processo concluido *
 echo **********************
 echo.
-echo Obs.: Não é necessário gerar pacote embutido para esse plugin
+echo Obs.: Nao e necessario gerar pacote embutido para esse plugin
 echo.
 pause
