@@ -1,6 +1,6 @@
-# Release Notes #
+### Release Notes ###
 
-## Release v1.0 ##
+#### Release v1.0 ####
 
 * Google Drive setup script
 * Builtin content pack script
@@ -19,91 +19,91 @@
 
 This Package has algorithms and libraries needed to create and publish online smartphone application with features to aid the information delivery related to Catholic Parish.
 
+Create yourself an android smartphone app to your parish with: news, group that belongs to your parish information, information about the parish itself, asking for pray section,  digital documents (guides, novena), music scripts listing and music chords.
+
+Watch the videos that explain the details.
+
 Site(Pt-BR): https://sites.google.com/site/smartphoneparishapp/
 
-## APLICATIVO SMARTPHONE PARA PARÓQUIAS ##
+### History ###
 
-Crie um aplicativo smartphone android para a sua paróquia (0800) com: notícias; informações sobre os grupos que atuam na mesma; informações sobre a própria paróquia; pedidos de oraçãp; documentos digitais(novenas e devocionários); repertórios e cifras. Converse com o seu pároco e depois assista aos vídeos, que explicam com mais detalhes o que fazer.
+The app idea comes from the observing of the parish near my home.
 
-### História ###
+The first insight is related to the amount of paper that is used for information delivery ( celebration, events, etc...).
 
-A idéia desse aplicativo surgiu de observações que fiz ao frequentar uma paróquia aqui perto de casa.
+The second insight is related to the groups that belongs (aid) to the parish. I saw as a big effort to know information about the groups, their meetings, etc...
 
-A primeira foi em relação a quantidade de papeis que circulam dentro da igreja para divulgação, acompanhamento de missa e etc.
+With that in my mind, I thought: Why do not create a smartphone app to hold that information?
 
-Quando eu estava procurando informações dos grupos que atuam na paróquia, percebi também que era trabalhoso saber a quantidade de grupos e também quando ocorrem as reuniões.
+So I did that.
 
-Com essas observações em mente, eu pensei: por que não fazer um aplicativo para ter toda essa informação?
+### The Application ###
 
-Então foi o que fiz.
+Instead of giving a ready to use app, it was created a set of tools (scripts, programs and projects) that allows any people to build it own android application.
 
-### O Aplicativo ###
+The tools are made to aid the process of create, configure and deliver the application to the Google Play Store. The tools aid in the update process after publication also.
 
-Ao invés de dar o aplicativo pronto, foi criado um conjunto de ferramentas que permitem a qualquer pessoa criar o seu próprio aplicativo android.
+Were created a set of videos with subtitles to explain step-by-step what to do to create the application. The videos explain the software architecture choices also.
 
-As ferramentas auxiliam desde a criação do ícone do aplicativo até a atualização de conteúdo depois que ele já está publicado na loja.
+The application has four parts:
 
-Para facilitar esse processo de criação e configuração do aplicativo, foi criado um conjunto de vídeos que explicam passo a passo a arquitetura proposta, quais ferramentas utilizar, e quais páginas devem ser configuradas.
+* __News (pt-br:Notícias):__ contains the news listing. Each news can be created and updated from its own tool.
+* __Community Activities (pt-br:Atividades da comunidade):__ contains the groups listing that belongs(aid) the parish. Each group information might have its history, their meetings information and an invitation message.
+* __The Parish (pt-br: A paróquia):__ contains information that don't change very frequently (schedule for the celebration, confession, contacts, batism procedure, marriage procedure, etc...)
+* __Ask for Pray (pt-br: Pedidos de oração):__ contains the information to aid people to send his pray intention in that parish.
 
-O aplicativo possui quatro partes:
+### The app works with internet and without internet ###
 
-* __Notícias:__ que contém uma listagem de notícias que podem ser postadas e atualizadas rapidamente usando a ferramenta própria.
-* __Atividades da comunidade:__ que contém a listagem de grupos da paróquia, onde podem ser colocadas informações da história do grupo, qual o horário de encontro e também pode ser colocado o convite.
-* __A paróquia:__ que contém informações do pároco, forania e informações que geralmente são fixas, como exemplo: horário de missa, horário de confissão, contatos, procedimentos de batismo, casamentos, etc...
-* __Pedidos de oração:__ que contém informação de como uma pessoa pode pedir oração naquela paróquia.
+The application is designed to work with or without the internet.
 
-### Funcionamento com e sem internet ###
+When the internet is available, the internal information (internal data) is updated as soon as the application starts.
 
-Esse aplicativo foi pensado para funcionar também com ou sem internet.
+When the smartphone doesn't has access to the internet, it allows access to the information that came from the latest update.
 
-Quando a internet está disponível, ele atualiza as informações internas.
+If you want to know how it works, you can take a look at the [architecture video (pt-br)](https://www.youtube.com/watch?v=dyWYwTL6vzA).
 
-Quando o smartphone estiver em uma região sem internet, ele permite acessar todas as informações que já vieram das atualizações passadas.
+### Why Android? ###
 
-Para maiores detalhes, veja o vídeo que fala sobre a arquitetura do aplicativo.
+I developed this project to run in Android platform because you need to pay the registration fee once and publish as many applications as you want at the google's android development & publishing program.
 
-### Porque Android? ###
-
-No inicio eu pensei em criar um aplicativo android, por causa do funcionamento da loja android. Nela você paga uma vez a taxa de inscrição, e depois disso, pode publicar quantos aplicativos quiser na google play.
-
-Essa versão do aplicativo não tem suporte ao iPhone e iPad, porque a loja da Apple pede uma inscrição de aproximadamente 200 dolares anuais para que você possa desenvolver e publicar aplicativos. Não foi desenvolvido para essa plataforma por questões financeiras.
+This version doesn't has iPhone and iPad support, because to build iOS application, you need to pay about 200 US$ per year to keep the application in the Apple Store. It was not developed for this platform because of the cost issue.
 
 ### Plugins ###
 
-A arquitetura do aplicativo foi pensada para funcionar também baseada em plugins.
+The software architecture is designed to support plugins also.
 
-Plugins são formas de estender a funcionalidade do aplicativo sem precisar criar um aplicativo novo.
+A plugin is a way to extend the application functionality (app feature) without the need to create an application from scratch.
 
-__Exemplo:__ Imagina que o aplicativo já tem a funcionalidade de mostrar as notícias cadastradas. Agora é necessário adicionar uma nova informação com a <b><i>liturgia diária</i></b>. Para isso, ou se criaria um aplicativo novo, ou utilizando o mesmo aplicativo, através de um __plugin__, se acrescentaria a funcionalidade de leitura da __liturgia diária__.
+__Example:__ Imagine that the application has the functionality to present news. Now we want to add a __day by day liturgy reading__. For that, we might create a new application, or we can use the same application, but using a __plugin__ that enables the application to have this new functionality (__day by day liturgy reading__).
 
-### Plugins que já estão presentes nessa versão  ###
+### Plugins already available in this version  ###
 
-Essa versão do aplicativo já vem com dois plugins que podem ser utilizados em conjunto com o aplicativo.
+This application version already comes with two plugins that can be used with the application.
 
-O primeiro é o plugin de __guia digital__. Esse plugin permite a criação de documentos em formato de novenas, ou documentos baseados em etapas ou dias. E possível distribuir esses documentos para os celulares das pessoas por esse plugin. Pode ser útil para divulgar novenas, devocionários, guias de orações, etc...
+The first is the __Digital Guide (pt-br:guia digital)__ plugin. This plugin enable the parish to create digital documents based on steps or based on days like novenas. It is possible to deliver these documents to the people's smartphones through this plugin. It can be useful for deliver pray guides, novenas, etc...
 
-O segundo é o plugin de __repertórios__. Esse plugin permite a criação de repertórios de músicas com ou sem cifra. Quando um repertório é instalado no aplicativo, a pessoa pode acessar qualquer música, ou imprimir um caderno em formato PDF desse repertório. Pode ser útil tanto para músicos, para cantores e também para pessoas acompanharem uma sequência de músicas durante a missa.
+The second is the __Script & Music(pt-br:repertórios)__ plugin. This plugin enable the parish to create music scripts and musics with or without chords. When the plugin is installed in the application, the people can access music scripts, music lyrics, music chords or print a PDF document that contains all the music script. It can be useful for musicians, to singers and to every people that want to follow the music sequence that is used in the celebration.
 
-### Vídeos ###
+### Videos ###
 
-Os vídeos abaixo foram criados, para explicar passo a passo como utilizar as ferramentas, desde baixar o projeto, configurar ícones, criar aplicativo para a loja, até a instalação e configuração de plugins.
+The videos below were created to explain step-by-step how to use the tools. It starts from download the project, configure icons, create the application for the google store, until the instalarion and configuration of the plugins.
 
-Lista de vídeos:
+Videos list (subtitles in pt-br):
 
-* [Passo1: Baixando Projeto do GitHub](https://www.youtube.com/watch?v=UUGD_SbGjyk)
-* [Apresentação Arquitetura e Softwares](https://www.youtube.com/watch?v=dyWYwTL6vzA)
-* [Passo2: Publicar Aplicativo](https://www.youtube.com/watch?v=ynvnRtJN-sg)
-* [Passo3: Editor de Noticias](https://www.youtube.com/watch?v=jZEcCWmhN0c)
-* [Passo4: Editor de Grupos](https://www.youtube.com/watch?v=HcCmkzr6Utg)
-* [Passo5: Editor de Informações da Paróquia](https://www.youtube.com/watch?v=tPjJglzY8dU)
-* [Passo6: Editor de Pedidos de Oração](https://www.youtube.com/watch?v=AeJoLf-WFjs)
-* [Passo7: Trocando Cores do Aplicativo](https://www.youtube.com/watch?v=3-m6wBR8OeE)
+* [Step 1: Download the Project from GitHub](https://www.youtube.com/watch?v=UUGD_SbGjyk)
+* [Introduction to the Software Architecture and External Tools](https://www.youtube.com/watch?v=dyWYwTL6vzA)
+* [Step 2: Publishing the Application](https://www.youtube.com/watch?v=ynvnRtJN-sg)
+* [Step 3: News Editor](https://www.youtube.com/watch?v=jZEcCWmhN0c)
+* [Step 4: Group Editor](https://www.youtube.com/watch?v=HcCmkzr6Utg)
+* [Step 5: Parish Information Editor](https://www.youtube.com/watch?v=tPjJglzY8dU)
+* [Step 6: Ask for Pray Editor](https://www.youtube.com/watch?v=AeJoLf-WFjs)
+* [Step 7: Changing the Application Colors (theme)](https://www.youtube.com/watch?v=3-m6wBR8OeE)
 * [Plugins](https://www.youtube.com/watch?v=-OdgHzSNvX0)
-* [PLUGIN: Guia Digital](https://www.youtube.com/watch?v=D9x8yRH0loM)
-* [PLUGIN: Repertórios](https://www.youtube.com/watch?v=sI1sC48iKEA)
+* [PLUGIN: Digital Guide](https://www.youtube.com/watch?v=D9x8yRH0loM)
+* [PLUGIN: Music Script and Music Chords](https://www.youtube.com/watch?v=sI1sC48iKEA)
 
 
-### App Screen ###
+### App Screen (pt-br) ###
 
 ![alt tag](https://github.com/A-Ribeiro/smartphone-parish-app/raw/master/website/img/a1.jpg)
 ![alt tag](https://github.com/A-Ribeiro/smartphone-parish-app/raw/master/website/img/b1.jpg)
