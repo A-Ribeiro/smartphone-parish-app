@@ -19,9 +19,9 @@
 
 This Package has algorithms and libraries needed to create and publish online smartphone application with features to aid the information delivery related to Catholic Parish.
 
-Create yourself an android smartphone app to your parish with: news, group that belongs to your parish information, information about the parish itself, asking for pray section,  digital documents (guides, novena), music scripts listing and music chords.
+Create yourself an android smartphone app to your parish with: news, group that belongs to your parish, information about the parish itself, asking for pray section,  digital documents (guides, novena), music scripts listing and music chords.
 
-Watch the videos that explain the details.
+Watch the [videos](#videos) that explain the details.
 
 Site(Pt-BR): https://sites.google.com/site/smartphoneparishapp/
 
@@ -39,11 +39,11 @@ So I did that.
 
 ### The Application ###
 
-Instead of giving a ready to use app, it was created a set of tools (scripts, programs and projects) that allows any people to build it own android application.
+Instead of giving a ready to use app, it was created a set of tools (scripts, programs and projects) that allows any people to build its own android application.
 
 The tools are made to aid the process of create, configure and deliver the application to the Google Play Store. The tools aid in the update process after publication also.
 
-Were created a set of videos with subtitles to explain step-by-step what to do to create the application. The videos explain the software architecture choices also.
+Were created a set of videos with subtitles(pt-br) to explain step-by-step what to do to create the application. The videos explain the software architecture choices also.
 
 The application has four parts:
 
@@ -52,7 +52,7 @@ The application has four parts:
 * __The Parish (pt-br: A paróquia):__ contains information that don't change very frequently (schedule for the celebration, confession, contacts, batism procedure, marriage procedure, etc...)
 * __Ask for Pray (pt-br: Pedidos de oração):__ contains the information to aid people to send his pray intention in that parish.
 
-### The app works with internet and without internet ###
+### The Application Works With Internet and Without Internet ###
 
 The application is designed to work with or without the internet.
 
@@ -76,13 +76,13 @@ A plugin is a way to extend the application functionality (app feature) without 
 
 __Example:__ Imagine that the application has the functionality to present news. Now we want to add a __day by day liturgy reading__. For that, we might create a new application, or we can use the same application, but using a __plugin__ that enables the application to have this new functionality (__day by day liturgy reading__).
 
-### Plugins already available in this version  ###
+### Plugins Already Available in this Version  ###
 
-This application version already comes with two plugins that can be used with the application.
+This application version already comes with two plugins that can be used.
 
 The first is the __Digital Guide (pt-br:guia digital)__ plugin. This plugin enable the parish to create digital documents based on steps or based on days like novenas. It is possible to deliver these documents to the people's smartphones through this plugin. It can be useful for deliver pray guides, novenas, etc...
 
-The second is the __Script & Music(pt-br:repertórios)__ plugin. This plugin enable the parish to create music scripts and musics with or without chords. When the plugin is installed in the application, the people can access music scripts, music lyrics, music chords or print a PDF document that contains all the music script. It can be useful for musicians, to singers and to every people that want to follow the music sequence that is used in the celebration.
+The second is the __Script & Music (pt-br:repertórios)__ plugin. This plugin enable the parish to create music scripts, musics lyrics or music with chords. When the plugin is installed in the application, the people can access music scripts, music lyrics, music chords or print a PDF document that contains all the music script. It can be useful for musicians, to singers and to every people that want to follow the music sequence that is used in the celebration.
 
 ### Videos ###
 
@@ -103,7 +103,7 @@ Videos list (subtitles in pt-br):
 * [PLUGIN: Music Script and Music Chords](https://www.youtube.com/watch?v=sI1sC48iKEA)
 
 
-### App Screen (pt-br) ###
+### App Screens (pt-br) ###
 
 ![alt tag](https://github.com/A-Ribeiro/smartphone-parish-app/raw/master/website/img/a1.jpg)
 ![alt tag](https://github.com/A-Ribeiro/smartphone-parish-app/raw/master/website/img/b1.jpg)
