@@ -2,6 +2,7 @@
 
 #### Release v1.0 ####
 
+* Windows tool set (exe)
 * Google Drive setup script
 * Builtin content pack script
 * Online content pack and upload script
