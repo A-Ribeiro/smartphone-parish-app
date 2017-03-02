@@ -47,10 +47,10 @@ Para facilitar esse processo de criação e configuração do aplicativo, foi cr
 
 O aplicativo possui quatro partes:
 
-* **Notícias: **que contém uma listagem de notícias que podem ser postadas e atualizadas rapidamente usando a ferramenta própria.
-* **Atividades da comunidade: **que contém a listagem de grupos da paróquia, onde podem ser colocadas informações da história do grupo, qual o horário de encontro e também pode ser colocado o convite.
-* **A paróquia: **que contém informações do pároco, forania e informações que geralmente são fixas, como exemplo: horário de missa, horário de confissão, contatos, procedimentos de batismo, casamentos, etc...
-* **Pedidos de oração: **que contém informação de como uma pessoa pode pedir oração naquela paróquia.
+* __Notícias: __que contém uma listagem de notícias que podem ser postadas e atualizadas rapidamente usando a ferramenta própria.
+* __Atividades da comunidade: __que contém a listagem de grupos da paróquia, onde podem ser colocadas informações da história do grupo, qual o horário de encontro e também pode ser colocado o convite.
+* __A paróquia: __que contém informações do pároco, forania e informações que geralmente são fixas, como exemplo: horário de missa, horário de confissão, contatos, procedimentos de batismo, casamentos, etc...
+* __Pedidos de oração: __que contém informação de como uma pessoa pode pedir oração naquela paróquia.
 
 ### Funcionamento com e sem internet ###
 
@@ -74,15 +74,15 @@ A arquitetura do aplicativo foi pensada para funcionar também baseada em plugin
 
 Plugins são formas de estender a funcionalidade do aplicativo sem precisar criar um aplicativo novo.
 
-**Exemplo: **Imagina que o aplicativo já tem a funcionalidade de mostrar as notícias cadastradas. Agora é necessário adicionar uma nova informação com a <b><i>liturgia diária</i></b>. Para isso, ou se criaria um aplicativo novo, ou utilizando o mesmo aplicativo, através de um **plugin**, se acrescentaria a funcionalidade de leitura da **liturgia diária**.
+__Exemplo: __Imagina que o aplicativo já tem a funcionalidade de mostrar as notícias cadastradas. Agora é necessário adicionar uma nova informação com a <b><i>liturgia diária</i></b>. Para isso, ou se criaria um aplicativo novo, ou utilizando o mesmo aplicativo, através de um __plugin__, se acrescentaria a funcionalidade de leitura da __liturgia diária__.
 
 ### Plugins que já estão presentes nessa versão  ###
 
 Essa versão do aplicativo já vem com dois plugins que podem ser utilizados em conjunto com o aplicativo.
 
-O primeiro é o plugin de **guia digital**. Esse plugin permite a criação de documentos em formato de novenas, ou documentos baseados em etapas ou dias. E possível distribuir esses documentos para os celulares das pessoas por esse plugin. Pode ser útil para divulgar novenas, devocionários, guias de orações, etc...
+O primeiro é o plugin de __guia digital__. Esse plugin permite a criação de documentos em formato de novenas, ou documentos baseados em etapas ou dias. E possível distribuir esses documentos para os celulares das pessoas por esse plugin. Pode ser útil para divulgar novenas, devocionários, guias de orações, etc...
 
-O segundo é o plugin de **repertórios**. Esse plugin permite a criação de repertórios de músicas com ou sem cifra. Quando um repertório é instalado no aplicativo, a pessoa pode acessar qualquer música, ou imprimir um caderno em formato PDF desse repertório. Pode ser útil tanto para músicos, para cantores e também para pessoas acompanharem uma sequência de músicas durante a missa.
+O segundo é o plugin de __repertórios__. Esse plugin permite a criação de repertórios de músicas com ou sem cifra. Quando um repertório é instalado no aplicativo, a pessoa pode acessar qualquer música, ou imprimir um caderno em formato PDF desse repertório. Pode ser útil tanto para músicos, para cantores e também para pessoas acompanharem uma sequência de músicas durante a missa.
 
 ### Vídeos ###
 
