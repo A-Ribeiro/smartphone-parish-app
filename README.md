@@ -47,10 +47,10 @@ Para facilitar esse processo de criação e configuração do aplicativo, foi cr
 
 O aplicativo possui quatro partes:
 
-* __Notícias: __que contém uma listagem de notícias que podem ser postadas e atualizadas rapidamente usando a ferramenta própria.
-* __Atividades da comunidade: __que contém a listagem de grupos da paróquia, onde podem ser colocadas informações da história do grupo, qual o horário de encontro e também pode ser colocado o convite.
-* __A paróquia: __que contém informações do pároco, forania e informações que geralmente são fixas, como exemplo: horário de missa, horário de confissão, contatos, procedimentos de batismo, casamentos, etc...
-* __Pedidos de oração: __que contém informação de como uma pessoa pode pedir oração naquela paróquia.
+* __Notícias:__ que contém uma listagem de notícias que podem ser postadas e atualizadas rapidamente usando a ferramenta própria.
+* __Atividades da comunidade:__ que contém a listagem de grupos da paróquia, onde podem ser colocadas informações da história do grupo, qual o horário de encontro e também pode ser colocado o convite.
+* __A paróquia:__ que contém informações do pároco, forania e informações que geralmente são fixas, como exemplo: horário de missa, horário de confissão, contatos, procedimentos de batismo, casamentos, etc...
+* __Pedidos de oração:__ que contém informação de como uma pessoa pode pedir oração naquela paróquia.
 
 ### Funcionamento com e sem internet ###
 
@@ -74,7 +74,7 @@ A arquitetura do aplicativo foi pensada para funcionar também baseada em plugin
 
 Plugins são formas de estender a funcionalidade do aplicativo sem precisar criar um aplicativo novo.
 
-__Exemplo: __Imagina que o aplicativo já tem a funcionalidade de mostrar as notícias cadastradas. Agora é necessário adicionar uma nova informação com a <b><i>liturgia diária</i></b>. Para isso, ou se criaria um aplicativo novo, ou utilizando o mesmo aplicativo, através de um __plugin__, se acrescentaria a funcionalidade de leitura da __liturgia diária__.
+__Exemplo:__ Imagina que o aplicativo já tem a funcionalidade de mostrar as notícias cadastradas. Agora é necessário adicionar uma nova informação com a <b><i>liturgia diária</i></b>. Para isso, ou se criaria um aplicativo novo, ou utilizando o mesmo aplicativo, através de um __plugin__, se acrescentaria a funcionalidade de leitura da __liturgia diária__.
 
 ### Plugins que já estão presentes nessa versão  ###
 
