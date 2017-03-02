@@ -62,7 +62,7 @@ Quando o smartphone estiver em uma região sem internet, ele permite acessar tod
 
 Para maiores detalhes, veja o vídeo que fala sobre a arquitetura do aplicativo.
 
-Porque Android?
+### Porque Android? ###
 
 No inicio eu pensei em criar um aplicativo android, por causa do funcionamento da loja android. Nela você paga uma vez a taxa de inscrição, e depois disso, pode publicar quantos aplicativos quiser na google play.
 
