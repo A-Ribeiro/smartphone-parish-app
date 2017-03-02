@@ -1,19 +1,3 @@
-### Release Notes ###
-
-#### Release v1.0 ####
-
-* Windows tool set (exe)
-* Google Drive setup script
-* Builtin content pack script
-* Online content pack and upload script
-* Android Studio application project
-* News editor
-* Group editor
-* Parish information editor
-* Pray editor
-* Included Plugin: online-guia-digital (digital guide)
-* Included Plugin: online-repertorios (music script)
-
 # Smartphone Application for Catholic Parish: EN #
 
 ## Description ##
@@ -112,31 +96,46 @@ Videos list (subtitles in pt-br):
 ![alt tag](https://github.com/A-Ribeiro/smartphone-parish-app/raw/master/website/img/_a3.jpg)
 
 
-## Software List ##
+# Software List #
 
-### Development Environment
+## Development Environment
 
 1. [Android Studio](https://developer.android.com/studio/)
 1. [Chrome](https://www.google.com.br/chrome/browser/desktop/)
 1. [Notepad++](https://notepad-plus-plus.org/)
 
-### Image Editors
+## Image Editors
 
 1. [Gimp](https://www.gimp.org/)
 1. [Krita](https://krita.org/)
 1. [MyPaint](http://mypaint.org/)
 1. [InkScape](https://inkscape.org/)
 
-### File Transfer Software (FTP)
+## File Transfer Software (FTP)
 
 1. [FileZilla](https://filezilla-project.org/)
 
-### Local HTTP Server
+## Local HTTP Server
 
 1. [XAMPP](https://www.apachefriends.org/pt_br/index.html)
 
-### 3rd Party Services That Needs Account Configuration
+## 3rd Party Services That Needs Account Configuration
 
 1. [Google Play Developer](https://play.google.com/apps/publish/)
 1. [000Webhost](https://www.000webhost.com/)
 
+# Release Notes #
+
+### Release v1.0 ###
+
+* Windows tool set (exe)
+* Google Drive setup script
+* Builtin content pack script
+* Online content pack and upload script
+* Android Studio application project
+* News editor
+* Group editor
+* Parish information editor
+* Pray editor
+* Included Plugin: online-guia-digital (digital guide)
+* Included Plugin: online-repertorios (music script)
