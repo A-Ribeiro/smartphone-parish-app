@@ -88,7 +88,7 @@ Videos list (subtitles in pt-br):
 * [PLUGIN: Music Script and Music Chords](https://www.youtube.com/watch?v=sI1sC48iKEA)
 
 
-### App Screens (pt-br) ###
+### Application Screens (pt-br) ###
 
 ![alt tag](https://github.com/A-Ribeiro/smartphone-parish-app/raw/master/website/img/a1.jpg)
 ![alt tag](https://github.com/A-Ribeiro/smartphone-parish-app/raw/master/website/img/b1.jpg)
