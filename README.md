@@ -1,4 +1,4 @@
-# Smartphone Application for Catholic Parish: EN #
+# Smartphone Application for Catholic Parish #
 
 ## Description ##
 
