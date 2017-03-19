@@ -142,8 +142,9 @@ if ($data["op"] == "json-restore"){
 		
 		if ($userInfo != null && canEmailBackupRestore($userInfo["email"])) {
 			
+			initDB();
+			
 			truncateTables();
-			sqlite_check_tables_creation();
 			
 			$json = DecompressLZW_Base62_to_UTF8_String($data["compressed-json"]);
 			
@@ -153,7 +154,7 @@ if ($data["op"] == "json-restore"){
 				'inserted' => 0,
 				'count' => 0
 			];
-			initDB();
+			
 			for($i=0;$i<count($json['musics']);$i++){
 				$entry = $json['musics'][$i];
 				$stmt = $pdo->prepare("INSERT INTO `music` (`id`, `name`, `last-modify`, `raw`, `json`, `userName`, `userEmail` ) VALUES (:id, :name, :lastmodify, :raw, :json, :userName, :userEmail )");
