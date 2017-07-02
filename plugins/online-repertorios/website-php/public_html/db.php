@@ -41,6 +41,9 @@ function initDB() {
 function truncateTables() {
 	global $USE_MYSQL;
 	global $pdo;
+	
+	initDB();
+	
 	if (!$USE_MYSQL) {
 		$pdo->exec("DELETE FROM `music`;");
 		$pdo->exec("VACUUM;");
@@ -56,6 +59,9 @@ function truncateTables() {
 function sqlite_check_tables_creation() {
 	global $USE_MYSQL;
 	global $pdo;
+	
+	initDB();
+	
 	if (!$USE_MYSQL) {
 		// Set errormode to exceptions
 		$pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
