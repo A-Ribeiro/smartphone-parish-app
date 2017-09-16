@@ -124,7 +124,16 @@ function generatePDF($userInfo, $data, $musicDictionary=null, $dest=null){
 		<page backtop='20mm' backbottom='20mm' backleft='15mm' backright='15mm' footer='page' ></page>
 		";
 
-
+	$musicCount = count($jsonMusicIDs);
+	if ($musicCount >36) {
+		$content .= "<page backtop='20mm' backbottom='20mm' backleft='15mm' backright='15mm' footer='page' ></page>";
+		$musicCount -= 36;
+	}
+	
+	while ($musicCount >39){
+		$content .= "<page backtop='20mm' backbottom='20mm' backleft='15mm' backright='15mm' footer='page' ></page>";
+		$musicCount -= 39;
+	}
 
 
 		//
