@@ -52,6 +52,8 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import android.util.Base64;
 
+import com.paroquia.aplicativo.GLPhotoView360;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -154,13 +156,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 String requeststr = url;
+
                 if (requeststr.startsWith("http://") ||
                         requeststr.startsWith("https://") ||
                         requeststr.startsWith("market://") ||
                         requeststr.startsWith("mailto:") ||
                         requeststr.startsWith("geo:") ||
                         requeststr.startsWith("tel:") ||
-                        requeststr.startsWith("data:") ) {
+                        requeststr.startsWith("data:")
+                        ) {
 
                     if (requeststr.startsWith("http")  || requeststr.startsWith("market://") )
                         openWebPage(requeststr);
@@ -250,7 +254,7 @@ public class MainActivity extends AppCompatActivity {
                     });
                 }
 
-                if ( message.startsWith( "android.downloadfile:" ) ) {
+                else if ( message.startsWith( "android.downloadfile:" ) ) {
 
                     String urlToDownload = message.substring("android.downloadfile:".length());
                     new DownloadHelper(urlToDownload,
@@ -271,7 +275,25 @@ public class MainActivity extends AppCompatActivity {
 
                 }
 
-                return true;
+                else if (message.startsWith( "android.sphereview:")) {
+                    String filepath = message.substring("android.sphereview:".length());
+
+                    File filepathFile = new File(FilePath("content/"+filepath));
+
+                    //File outputDir = getApplicationContext().getFilesDir() + ;
+                    //File filepathFile = new File(outputDir,filepath);
+
+                    Log.i("Sphere View 360", "-> file=" + filepathFile.toString());
+
+                    if (filepathFile.exists()) {
+                        Log.i("Sphere View 360", "EXISTS!!!");
+
+                        view360(Uri.fromFile(filepathFile));
+                    }
+
+                }
+
+                    return true;
                 //return super.onJsAlert(view, url, message, result);
             }
         });
@@ -431,6 +453,12 @@ public class MainActivity extends AppCompatActivity {
         if (intent.resolveActivity(getPackageManager()) != null) {
             startActivity(intent);
         }
+    }
+
+    public void view360(Uri imagePath) {
+        Intent intent = new Intent(this, GLPhotoView360.class);
+        intent.setData(imagePath);
+        startActivity(intent);
     }
 
     interface IDownload {
