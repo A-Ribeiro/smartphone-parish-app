@@ -39,14 +39,12 @@
 				news = data;
 				
 				//menu render
-				$("#plugin-list").empty();
-				for(var i=0;i<news["news-list"].length;i++) {
-					var entry = news["news-list"][i];
-					$("#plugin-list").append( '<li><a href="#" onclick=" sessionStorage.index =  \'' + String(i) + '\';  $.mobile.changePage( \'#noticia-detalhe\' );" ><h2 style="white-space:normal;">'+entry["news-title"]+'</h2><p style="white-space:normal;">'+entry["news-description"]+'</p></a></li>' );
-				}
+				
 				
 				$.getJSON( 'plugins.json', function( data ) {
 					var title = "";
+					
+					$("#plugin-list").empty();
 					
 					//$("#plugin-list").empty();
 					for(var i=0;i<data["list"].length;i++) {
@@ -62,6 +60,11 @@
 					}
 					if (data["list"].length > 0)
 						$("#plugin-list").append('<li data-role="list-divider">&nbsp;</li>');
+						
+					for(var i=0;i<news["news-list"].length;i++) {
+						var entry = news["news-list"][i];
+						$("#plugin-list").append( '<li><a href="#" onclick=" sessionStorage.index =  \'' + String(i) + '\';  $.mobile.changePage( \'#noticia-detalhe\' );" ><h2 style="white-space:normal;">'+entry["news-title"]+'</h2><p style="white-space:normal;">'+entry["news-description"]+'</p></a></li>' );
+					}
 					
 					$("#plugin-list").listview();
 					$("#plugin-list").listview('refresh',true);
