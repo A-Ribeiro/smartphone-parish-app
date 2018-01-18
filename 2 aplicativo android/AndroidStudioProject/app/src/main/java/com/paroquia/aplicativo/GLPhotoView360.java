@@ -149,14 +149,23 @@ public class GLPhotoView360 extends AppCompatActivity {
         SensorManager senSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 
         Sensor senAccelerometer = senSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        senSensorManager.registerListener(sensorListener, senAccelerometer , SensorManager.SENSOR_DELAY_GAME);
+        boolean accFound = senSensorManager.registerListener(sensorListener, senAccelerometer , SensorManager.SENSOR_DELAY_GAME);
 
         Sensor senMagnetometer = senSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
-        senSensorManager.registerListener(sensorListener, senMagnetometer, SensorManager.SENSOR_DELAY_GAME);
-
+        boolean compassFound = senSensorManager.registerListener(sensorListener, senMagnetometer, SensorManager.SENSOR_DELAY_GAME);
 
         //force reset north when data from acc and mag are OK
         mGLView.<GLRenderer360Photo>getRenderer().PostResetNorth();
+
+        if (!accFound) {
+            Log.d("GLPhotoView360","Accelerometer not found...");
+        }
+
+        if (!compassFound) {
+            Log.d("GLPhotoView360","Compass not found...");
+            for(int i=0;i<20;i++)
+                mGLView.<GLRenderer360Photo>getRenderer().setMagnetometer(0, 0, 100);
+        }
 
     }
 
