@@ -76,7 +76,14 @@ if not exist "..\2 aplicativo android\AndroidStudioProject\app\src\main\res\raw\
 	mkdir "..\2 aplicativo android\AndroidStudioProject\app\src\main\res\raw\"
 )
 
-del "..\2 aplicativo android\AndroidStudioProject\app\src\main\res\raw\*.zip" >null
+if exist "..\2 aplicativo android\AndroidStudioProject\app\src\main\res\raw\content.zip" (
+	del "..\2 aplicativo android\AndroidStudioProject\app\src\main\res\raw\content.zip" >null
+)
+if exist "..\2 aplicativo android\AndroidStudioProject\app\src\main\res\raw\builtin.zip" (
+	del "..\2 aplicativo android\AndroidStudioProject\app\src\main\res\raw\builtin.zip" >null
+)
+
+
 move content.zip "..\2 aplicativo android\AndroidStudioProject\app\src\main\res\raw\" >null
 move builtin.zip "..\2 aplicativo android\AndroidStudioProject\app\src\main\res\raw\" >null
 
