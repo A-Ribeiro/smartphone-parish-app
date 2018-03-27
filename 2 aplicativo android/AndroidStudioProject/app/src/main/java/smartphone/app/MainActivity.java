@@ -7,13 +7,16 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.media.MediaScannerConnection;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -48,6 +51,11 @@ import java.net.UnknownHostException;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import android.util.Base64;
@@ -56,6 +64,90 @@ import com.paroquia.aplicativo.GLPhotoView360;
 
 
 public class MainActivity extends AppCompatActivity {
+
+    //
+    // FileProvider methods - begin
+    //
+
+    // example: getShareableURI ( "content/file.pdf" )
+    Uri getShareableURI(String internal_filepath){
+        //Log.i("getShareableURI", "filePath: " + FilePath(internal_filepath));
+        return FileProvider.getUriForFile(this,BuildConfig.APPLICATION_ID + ".provider",
+                new File(FilePath(internal_filepath))
+                //new File("file://" + FilePath(internal_filepath))
+        );
+    }
+
+    List<Uri> allOpenedURI = new ArrayList<Uri>();
+
+    // example: OpenPDF( "content/file.pdf" )
+    void OpenPDF(String file) {
+
+        Uri uri = getShareableURI(file);
+
+        //Log.i("OpenPDF","uri: " + uri);
+
+        if (!allOpenedURI.contains(uri))
+            allOpenedURI.add(uri);
+
+        //Log.i("OpenPDF","set intent...");
+
+        Intent intent;
+        intent = new Intent(Intent.ACTION_VIEW);
+        intent.setDataAndType( uri , "application/pdf");
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+        //Log.i("OpenPDF","SET GRANT PERMISSION");
+
+        intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+        // Workaround for Android bug.
+        // grantUriPermission also needed for KITKAT,
+        // see https://code.google.com/p/android/issues/detail?id=76683
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.KITKAT) {
+            List<ResolveInfo> resInfoList = this.getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
+            for (ResolveInfo resolveInfo : resInfoList) {
+                String packageName = resolveInfo.activityInfo.packageName;
+                this.grantUriPermission(packageName, uri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            }
+        }
+
+        //Log.i("OpenPDF","START INTENT...");
+
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
+    }
+
+    public void revokeFileReadPermission(Context context) {
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.KITKAT) {
+            for( Uri uri : allOpenedURI ){
+                context.revokeUriPermission(uri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            }
+        }
+        allOpenedURI.clear();
+    }
+
+    @Override
+    protected void onDestroy() {
+
+        revokeFileReadPermission(this);
+
+        super.onDestroy();
+    }
+
+    @Override
+    protected void onResume() {
+
+        revokeFileReadPermission(this);
+
+        super.onResume();
+    }
+
+    //
+    // FileProvider methods - end
+    //
+
 
     WebView webView;
     ProgressDialog progress;
@@ -163,7 +255,11 @@ public class MainActivity extends AppCompatActivity {
                         requeststr.startsWith("mailto:") ||
                         requeststr.startsWith("geo:") ||
                         requeststr.startsWith("tel:") ||
-                        requeststr.startsWith("data:")
+                        requeststr.startsWith("data:") ||
+
+                        requeststr.startsWith("viewpdf:") ||
+                        requeststr.startsWith("viewsphere:")
+
                         ) {
 
                     if (requeststr.startsWith("http")  || requeststr.startsWith("market://") )
@@ -215,6 +311,13 @@ public class MainActivity extends AppCompatActivity {
                             //Log.e(TAG, "IOError with PDF");
                             e.printStackTrace();
                         }
+                    }
+                    else if (requeststr.startsWith("viewpdf:")) {
+                        OpenPDF( requeststr.substring( "viewpdf:".length() ) );
+                    }else if (requeststr.startsWith("viewsphere:")) {
+                        File filepathFile = new File(FilePath(requeststr.substring( "viewsphere:".length() )));
+                        if (filepathFile.exists())
+                            view360(Uri.fromFile(filepathFile));
                     }
 
                     //Log.d("url","loading external url: " + requeststr );
