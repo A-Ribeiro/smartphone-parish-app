@@ -8,6 +8,8 @@ Create yourself an android smartphone app to your parish with: news, group that 
 
 Watch the [videos](#videos) that explain the details.
 
+Site(En): https://sites.google.com/site/smartphoneparishapp/en
+
 Site(Pt-BR): https://sites.google.com/site/smartphoneparishapp/
 
 ### History ###
@@ -71,7 +73,7 @@ The second is the __Script & Music (pt-br:repertórios)__ plugin. This plugin en
 
 ### Videos ###
 
-The videos below were created to explain step-by-step how to use the tools. It starts from download the project, configure icons, create the application for the google store, until the instalarion and configuration of the plugins.
+The videos below were created to explain step-by-step how to use the tools. It starts from download the project, configure icons, create the application for the google store, until the instalation and configuration of the plugins.
 
 Videos list (subtitles in pt-br):
 
